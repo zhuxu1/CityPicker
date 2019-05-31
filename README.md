@@ -6,10 +6,10 @@
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-![请查看原文链接](https://github.com/zaaach/CityPicker)
-不再赘述，本只是搜到![原作者](https://github.com/zaaach)的框架，甚是喜欢，但发现有一些BUG，于是自己尽力修复了一些，为了方便和需求又添加了一些新的接口
-本打算自己留着用了，时间仓促，也没有太雕琢代码质量，单看到issue里有那么多问题，也不知道大家解决没有，但本着开源的原则，就把自己的版本发出来了
-原来整体代码还是比较好看懂的，我又加了一些简单的备注，如果可能建议还是多尝试着自己看一看
+[请查看原文链接](https://github.com/zaaach/CityPicker)
+不再赘述，本只是搜到[原作者](https://github.com/zaaach)的框架，甚是喜欢，但发现有一些BUG，于是自己尽力修复了一些，为了方便和需求又添加了一些新的接口  
+本打算自己留着用了，时间仓促，也没有太雕琢代码质量，单看到issue里有那么多问题，也不知道大家解决没有，但本着开源的原则，就把自己的版本发出来了  
+原来整体代码还是比较好看懂的，我又加了一些简单的备注，如果可能建议还是多尝试着自己看一看  
 
 #### 主要修改：
 -   新增可以配置是否开启“热门城市”
@@ -25,19 +25,21 @@
 -   自定义数据一键排序
 
 # 使用方法：
-![请查看原文链接](https://github.com/zaaach/CityPicker)
+[点击查看原文链接](https://github.com/zaaach/CityPicker)
 
-![请查看样例代码](https://github.com/zhuxu1/CityPickerFixed/blob/master/sample/src/main/java/com/zaaach/citypickerdemo/MainActivity.java)
-
-#### 本次新增主要内容使用方法:
+#### 本次新增主要内容使用方法:  
 ```
     通过自定义CityPickerConfig来完成自定义
-```
+```  
+
+样例代码中已经有详细的代码和备注，[点击查看样例代码](https://github.com/zhuxu1/CityPickerFixed/blob/master/sample/src/main/java/com/zaaach/citypickerdemo/MainActivity.java)
+
+
 
 #### 
-This is a fixed version, please click ![here](https://github.com/zaaach/CityPicker) to see more
-If you need, you can submit an ![issue](https://github.com/zhuxu1/CityPickerFixed/issues).
-如果又需要，可以提交iuuse   
+This is a fixed version, please click [here](https://github.com/zaaach/CityPicker) to see more  
+If you need, you can submit an [issue](https://github.com/zhuxu1/CityPickerFixed/issues).  
+如果有需要，可以提交iuuse     
 
 ####再次感谢原作者，希望帮助到更多的人
 
