@@ -28,7 +28,7 @@
             android:background="?attr/cpOverlayBackground"/>
 
         <!--右侧字母导航-->
-        <com.zaaach.citypicker.view.SideIndexBar
+        <com.zhuxu.citypicker.view.SideIndexBar
             android:id="@+id/cp_side_index_bar"
             android:layout_width="@dimen/cp_index_bar_width"
             android:layout_height="match_parent"
