@@ -6,6 +6,24 @@
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
+```
+    compile 'com.utils.zhuxu:citypicker:0.0.1'
+```  
+```
+   <dependency>
+     <groupId>com.utils.zhuxu</groupId>
+     <artifactId>citypicker</artifactId>
+     <version>0.0.1</version>
+     <type>pom</type>
+   </dependency>
+```  
+```
+   <dependency org='com.utils.zhuxu' name='citypicker' rev='0.0.1'>
+     <artifact name='citypicker' ext='pom' ></artifact>
+   </dependency>
+```  
+
+
 [请查看原文链接](https://github.com/zaaach/CityPicker)
 不再赘述，本只是搜到[原作者](https://github.com/zaaach)的框架，甚是喜欢，但发现有一些BUG，于是自己尽力修复了一些，为了方便和需求又添加了一些新的接口  
 本打算自己留着用了，时间仓促，也没有太雕琢代码质量，单看到issue里有那么多问题，也不知道大家解决没有，但本着开源的原则，就把自己的版本发出来了  
