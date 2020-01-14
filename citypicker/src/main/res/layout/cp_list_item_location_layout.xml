@@ -4,25 +4,39 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingTop="5dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="5dp">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/cp_list_item_location_layout"
         android:layout_width="wrap_content"
         android:layout_height="?attr/cpListItemHeight"
+        android:background="?attr/cpGridItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/cp_grid_item_padding"
+        android:paddingBottom="@dimen/cp_grid_item_padding"
         tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/cp_gird_item_type_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="?attr/cpListItemLocBackGround"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/cp_list_item_location"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/cp_grid_item_padding"
-            android:paddingBottom="@dimen/cp_grid_item_padding"
-            android:gravity="center"
-            android:background="?attr/cpGridItemBackground"
-            android:textSize="?attr/cpListItemTextSize"
-            android:textColor="?attr/cpListItemTextColor"/>
-    </FrameLayout>
+            android:layout_marginRight="8dp"
+            android:text="正在定位..."
+            android:textColor="?attr/cpListItemTextColor"
+            android:textSize="?attr/cpListItemTextSize" />
+    </LinearLayout>
 </LinearLayout>

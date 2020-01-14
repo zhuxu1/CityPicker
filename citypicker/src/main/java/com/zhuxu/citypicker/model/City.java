@@ -14,12 +14,22 @@ public class City {
     private String pinyin;
     private String code;
     private boolean isHot = false;
+    private boolean isLocation = false;
 
     public City(String name, String province, String pinyin, String code) {
         this.name = name;
         this.province = province;
         this.pinyin = pinyin;
         this.code = code;
+    }
+
+    public City(String name, String province, String pinyin, String code, boolean isHot, boolean isLocation) {
+        this.name = name;
+        this.province = province;
+        this.pinyin = pinyin;
+        this.code = code;
+        this.isHot = isHot;
+        this.isLocation = isLocation;
     }
 
     public void setHot() {
@@ -80,5 +90,21 @@ public class City {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public boolean isHot() {
+        return isHot;
+    }
+
+    public void setHot(boolean hot) {
+        isHot = hot;
+    }
+
+    public boolean isLocation() {
+        return isLocation;
+    }
+
+    public void setLocation(boolean location) {
+        isLocation = location;
     }
 }

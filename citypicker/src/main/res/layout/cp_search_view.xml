@@ -6,18 +6,23 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:gravity="center_vertical"
-    android:padding="16dp"
+    android:padding="11dp"
     tools:showIn="@layout/cp_dialog_city_picker">
 
     <EditText
         android:id="@+id/cp_search_box"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@null"
+        android:background="@drawable/shape_edt"
         android:hint="?attr/cpSearchHintText"
         android:maxLength="20"
         android:maxLines="1"
+        android:paddingLeft="15dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp"
+        android:singleLine="true"
         android:textColor="?attr/cpSearchTextColor"
         android:textColorHint="?attr/cpSearchHintTextColor"
         android:textCursorDrawable="@drawable/shape_cursor_edt"
@@ -48,7 +53,8 @@
     <TextView
         android:id="@+id/cp_cancel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
         android:text="@string/cp_cancel"
         android:textColor="?attr/cpCancelTextColor"
         android:textSize="?attr/cpCancelTextSize" />

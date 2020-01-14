@@ -4,5 +4,5 @@
     <!--宽度-->
     <size android:width="1dp" />
     <!--色值-->
-    <solid android:color="@color/color_green" />
+    <solid android:color="@color/z_color_curse_orange" />
 </shape>

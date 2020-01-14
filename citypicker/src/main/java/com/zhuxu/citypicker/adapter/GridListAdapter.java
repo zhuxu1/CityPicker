@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhuxu.citypicker.R;
@@ -20,7 +22,7 @@ import java.util.List;
  * @Author: Bro0cL
  * @Date: 2018/2/8 21:22
  */
-public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridViewHolder>{
+public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridViewHolder> {
     public static final int SPAN_COUNT = 3;
 
     private Context mContext;
@@ -58,10 +60,16 @@ public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridVi
         holder.container.setLayoutParams(lp);
 
         holder.name.setText(data.getName());
+        if (data.isHot()) {
+            holder.type.setVisibility(View.VISIBLE);
+            holder.type.setText("热");
+        } else {
+            holder.type.setVisibility(View.GONE);
+        }
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mInnerListener != null){
+                if (mInnerListener != null) {
                     mInnerListener.dismiss(pos, data);
                 }
             }
@@ -73,18 +81,20 @@ public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridVi
         return mData == null ? 0 : mData.size();
     }
 
-    public static class GridViewHolder extends RecyclerView.ViewHolder{
-        FrameLayout container;
+    public static class GridViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout container;
         TextView name;
+        TextView type;
 
         public GridViewHolder(View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.cp_grid_item_layout);
             name = itemView.findViewById(R.id.cp_gird_item_name);
+            type = itemView.findViewById(R.id.cp_gird_item_type);
         }
     }
 
-    public void setInnerListener(InnerListener listener){
+    public void setInnerListener(InnerListener listener) {
         this.mInnerListener = listener;
     }
 }

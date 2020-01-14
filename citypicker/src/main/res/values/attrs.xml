@@ -10,32 +10,41 @@
     <attr name="cpSearchHintTextColor" format="color|reference" />
     <attr name="cpSearchCursorDrawable" format="reference" />
 
+    <attr name="cpListItemHotBackGround" format="color|reference" />
+    <attr name="cpListItemLocBackGround" format="color|reference" />
+    <attr name="cpListItemHotTextSize" format="dimension|reference" />
+    <attr name="cpListItemHotTextColor" format="color|reference" />
+    <attr name="cpListItemLocationTextSize" format="dimension|reference" />
+    <attr name="cpListItemLocationTextColor" format="color|reference" />
+
     <attr name="cpListItemTextSize" format="dimension|reference" />
     <attr name="cpListItemTextColor" format="color|reference" />
-    <attr name="cpListItemHeight" format="dimension|reference"/>
+    <attr name="cpListItemHeight" format="dimension|reference" />
 
-    <attr name="cpEmptyIcon" format="reference"/>
-    <attr name="cpEmptyIconWidth" format="dimension|reference"/>
-    <attr name="cpEmptyIconHeight" format="dimension|reference"/>
-    <attr name="cpEmptyText" format="string|reference"/>
-    <attr name="cpEmptyTextSize" format="dimension|reference"/>
-    <attr name="cpEmptyTextColor" format="color|reference"/>
+    <attr name="cpEmptyIcon" format="reference" />
+    <attr name="cpEmptyIconWidth" format="dimension|reference" />
+    <attr name="cpEmptyIconHeight" format="dimension|reference" />
+    <attr name="cpEmptyText" format="string|reference" />
+    <attr name="cpEmptyTextSize" format="dimension|reference" />
+    <attr name="cpEmptyTextColor" format="color|reference" />
 
-    <attr name="cpGridItemBackground" format="color|reference"/>
-    <attr name="cpGridItemSpace" format="reference"/>
+    <attr name="cpGridItemBackground" format="color|reference" />
+    <attr name="cpGridItemSpace" format="reference" />
 
-    <attr name="cpSectionHeight" format="reference"/>
+    <attr name="cpSectionHeight" format="reference" />
     <attr name="cpSectionTextSize" format="reference" />
     <attr name="cpSectionTextColor" format="reference" />
     <attr name="cpSectionBackground" format="reference" />
+    <attr name="cpSectionSpacingBackground" format="reference" />
+    <attr name="cpSectionSpacingDeepBackground" format="color|reference" />
 
     <attr name="cpIndexBarTextSize" format="reference" />
     <attr name="cpIndexBarNormalTextColor" format="reference" />
     <attr name="cpIndexBarSelectedTextColor" format="reference" />
 
-    <attr name="cpOverlayWidth" format="dimension|reference"/>
-    <attr name="cpOverlayHeight" format="dimension|reference"/>
-    <attr name="cpOverlayTextSize" format="dimension|reference"/>
-    <attr name="cpOverlayTextColor" format="color|reference"/>
-    <attr name="cpOverlayBackground" format="color|reference"/>
+    <attr name="cpOverlayWidth" format="dimension|reference" />
+    <attr name="cpOverlayHeight" format="dimension|reference" />
+    <attr name="cpOverlayTextSize" format="dimension|reference" />
+    <attr name="cpOverlayTextColor" format="color|reference" />
+    <attr name="cpOverlayBackground" format="color|reference" />
 </resources>

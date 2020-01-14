@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhuxu.citypicker.R;
@@ -158,18 +160,27 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             int space = mContext.getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
             int padding = mContext.getResources().getDimensionPixelSize(R.dimen.cp_default_padding);
             int indexBarWidth = mContext.getResources().getDimensionPixelSize(R.dimen.cp_index_bar_width);
-            int itemWidth = (screenWidth - padding - space * (GridListAdapter.SPAN_COUNT - 1) - indexBarWidth) / GridListAdapter.SPAN_COUNT;
+            int itemWidth = 0;
+            if (GridListAdapter.SPAN_COUNT > 4) {
+                itemWidth = (screenWidth - padding - space * 2 - indexBarWidth) / 2;
+            } else if (GridListAdapter.SPAN_COUNT < 2) {
+                itemWidth = (screenWidth - padding - space * (GridListAdapter.SPAN_COUNT - 1) - indexBarWidth) / GridListAdapter.SPAN_COUNT;
+            } else {
+                itemWidth = (int) ((screenWidth - padding - space * (GridListAdapter.SPAN_COUNT - 1) - indexBarWidth) / GridListAdapter.SPAN_COUNT * 1.5);
+            }
+//            int itemWidth = (screenWidth - padding - space * (GridListAdapter.SPAN_COUNT - 1) - indexBarWidth) / GridListAdapter.SPAN_COUNT;
             ViewGroup.LayoutParams lp = ((LocationViewHolder) holder).container.getLayoutParams();
             lp.width = itemWidth;
             lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             ((LocationViewHolder) holder).container.setLayoutParams(lp);
-
+            ((LocationViewHolder) holder).type_loc.setVisibility(View.GONE);
             switch (locateState) {
                 case LocateState.LOCATING:
                     ((LocationViewHolder) holder).current.setText(R.string.cp_locating);
                     break;
                 case LocateState.SUCCESS:
                     ((LocationViewHolder) holder).current.setText(data.getName());
+                    ((LocationViewHolder) holder).type_loc.setVisibility(View.VISIBLE);
                     break;
                 case LocateState.FAILURE:
                     ((LocationViewHolder) holder).current.setText(R.string.cp_locate_failed);
@@ -259,13 +270,15 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
     }
 
     public static class LocationViewHolder extends BaseViewHolder {
-        FrameLayout container;
+        LinearLayout container;
         TextView current;
+        ImageView type_loc;
 
         LocationViewHolder(View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.cp_list_item_location_layout);
             current = itemView.findViewById(R.id.cp_list_item_location);
+            type_loc = itemView.findViewById(R.id.cp_gird_item_type_img);
         }
     }
 }

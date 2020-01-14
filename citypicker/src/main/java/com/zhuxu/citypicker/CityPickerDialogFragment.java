@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -138,7 +139,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new SectionItemDecoration(getActivity(), mAllCities), 0);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity()), 1);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), mAllCities), 1);
         mAdapter = new CityListAdapter(getActivity(), mAllCities, mHotCities, locateState);
         mAdapter.autoLocate(true);
         mAdapter.setInnerListener(this);
@@ -182,10 +183,12 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
 
     private void initData() {
         Bundle args = getArguments();
+        Log.e("zhuxu","1=================================");
         if (args != null) {
             enableAnim = args.getBoolean("cp_enable_anim");
             config = (CityPickerConfig) args.getSerializable(CITY_PICKER_DIALOG_CONFIG_FLAG);
         }
+        Log.e("zhuxu","2=================================");
         //初始化热门城市
         if (mHotCities == null || mHotCities.isEmpty()) {
             // 是否使用自定义热门城市
@@ -204,6 +207,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
                 mHotCities.add(new HotCity("武汉", "湖北", "101200101"));
             }
         }
+        Log.e("zhuxu","3=================================");
         //初始化定位城市，默认为空时会自动回调定位
         if (mLocatedCity == null) {
             mLocatedCity = new LocatedCity(getString(R.string.cp_locating), "未知", "0");
@@ -211,6 +215,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             locateState = LocateState.SUCCESS;
         }
+        Log.e("zhuxu","4=================================");
 
         // 判断是否使用自定义数据
         if (!config.isUseCustomData()) {
@@ -219,6 +224,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             mAllCities = mList_custom;
         }
+        Log.e("zhuxu","5=================================");
 
         // 初始化拼音数据
         initPinyinData(mAllCities);
@@ -229,11 +235,13 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             hotCity.setHot();
             mAllCities.add(0, hotCity);
         }
+        Log.e("zhuxu","6=================================");
 
         // 是否显示定位
         if (config.isShowLocation()) {
             mAllCities.add(0, mLocatedCity);
         }
+        Log.e("zhuxu","7=================================");
 
         mResults = mAllCities;
     }

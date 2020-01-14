@@ -38,6 +38,7 @@
         android:id="@+id/cb_hot_enable"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:checked="true"
         android:text="开启热门城市"
         android:textSize="16sp" />
 
@@ -54,6 +55,7 @@
         android:id="@+id/cb_location_enable"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:checked="true"
         android:text="开启定位显示"
         android:textSize="16sp" />
 
@@ -61,6 +63,7 @@
         android:id="@+id/cb_enable_anim"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:checked="true"
         android:text="启用动画效果"
         android:textSize="16sp" />
 

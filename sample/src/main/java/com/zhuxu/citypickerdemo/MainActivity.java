@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private List<HotCity> hotCities;
     private int anim;
     private int theme;
-    private boolean enable;
+    private boolean enable = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

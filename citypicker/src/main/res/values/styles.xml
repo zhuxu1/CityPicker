@@ -29,6 +29,13 @@
         <item name="cpSearchHintTextColor">@color/cp_color_gray_light</item>
         <item name="cpSearchCursorDrawable">@color/cp_color_gray_dark</item>
 
+        <item name="cpListItemHotBackGround">@drawable/shape_back_hot</item>
+        <item name="cpListItemLocBackGround">@mipmap/icon_location</item>
+        <item name="cpListItemHotTextSize">@dimen/z_grid_hot_size</item>
+        <item name="cpListItemHotTextColor">@color/z_txtcolor_hot</item>
+        <item name="cpListItemLocationTextSize">@dimen/z_grid_loc_size</item>
+        <item name="cpListItemLocationTextColor">@color/z_txtcolor_loca</item>
+
         <item name="cpListItemHeight">@dimen/cp_list_item_height</item>
         <item name="cpListItemTextSize">@dimen/cp_list_item_text_size</item>
         <item name="cpListItemTextColor">@color/cp_color_gray_deep</item>
@@ -40,13 +47,18 @@
         <item name="cpEmptyTextSize">@dimen/cp_empty_text_size</item>
         <item name="cpEmptyTextColor">@color/cp_color_gray_deep</item>
 
-        <item name="cpGridItemBackground">@drawable/cp_grid_item_bg</item>
+        <item name="cpGridItemBackground">@drawable/shape_edt</item>
+        <!--        <item name="cpGridItemBackground">@drawable/cp_grid_item_bg</item>-->
         <item name="cpGridItemSpace">@dimen/cp_grid_item_space</item>
 
         <item name="cpSectionHeight">@dimen/cp_section_height</item>
         <item name="cpSectionTextSize">@dimen/cp_section_text_size</item>
-        <item name="cpSectionTextColor">@color/cp_color_gray</item>
-        <item name="cpSectionBackground">@color/cp_color_section_bg</item>
+        <item name="cpSectionTextColor">@color/cp_color_black</item>
+<!--        <item name="cpSectionTextColor">@color/cp_color_gray</item>-->
+        <item name="cpSectionSpacingBackground">@color/cp_color_section_bg</item>
+        <item name="cpSectionSpacingDeepBackground">@color/cp_color_section_bg_deep</item>
+<!--        <item name="cpSectionBackground">@color/color_green</item>-->
+        <item name="cpSectionBackground">@color/cp_color_section_bg_back</item>
 
         <item name="cpIndexBarTextSize">@dimen/cp_index_bar_text_size</item>
         <item name="cpIndexBarNormalTextColor">@color/cp_color_gray</item>

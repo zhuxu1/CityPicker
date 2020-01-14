@@ -6,35 +6,51 @@
 
     <include layout="@layout/cp_search_view" />
 
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="1dp"
+        android:background="@color/z_color_back_edt_search" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cp_city_recyclerview"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@android:color/white"/>
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/cp_overlay"
-            android:layout_width="?attr/cpOverlayWidth"
-            android:layout_height="?attr/cpOverlayHeight"
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:textSize="?attr/cpOverlayTextSize"
-            android:textColor="?attr/cpOverlayTextColor"
-            android:background="?attr/cpOverlayBackground"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cp_city_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:id="@+id/cp_overlay"
+                android:layout_width="?attr/cpOverlayWidth"
+                android:layout_height="?attr/cpOverlayHeight"
+                android:layout_centerInParent="true"
+                android:background="?attr/cpOverlayBackground"
+                android:gravity="center"
+                android:textColor="?attr/cpOverlayTextColor"
+                android:textSize="?attr/cpOverlayTextSize"
+                android:visibility="gone" />
+
+            <include layout="@layout/cp_empty_view" />
+        </RelativeLayout>
 
         <!--右侧字母导航-->
         <com.zhuxu.citypicker.view.SideIndexBar
             android:id="@+id/cp_side_index_bar"
             android:layout_width="@dimen/cp_index_bar_width"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shape_edt_stroke" />
 
-        <include layout="@layout/cp_empty_view"/>
-    </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>

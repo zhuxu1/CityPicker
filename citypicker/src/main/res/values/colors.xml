@@ -4,11 +4,26 @@
     <color name="cp_colorPrimaryDark">#303F9F</color>
     <color name="cp_colorAccent">#3F51B5</color>
 
+    <color name="z_back_color_hot">#ff4c4c</color>
+    <color name="z_back_color_loc">#ff4c4c</color>
+
+    <color name="white">#ffffff</color>
+    <color name="z_txtcolor_hot">#ffffff</color>
+    <color name="z_txtcolor_loca">#ffffff</color>
+    <color name="z_color_back_edt_search">#f6f6f6</color>
+    <color name="z_color_back_edt_search2">#fbfbfb</color>
+    <color name="z_color_curse_orange">#ff4c4c</color>
+
+    <color name="cp_color_black">#000000</color>
+    <color name="cp_color_black_easy">#aaaaaa</color>
     <color name="cp_color_gray_light">#cdcdcd</color>
     <color name="cp_color_gray">#999999</color>
     <color name="cp_color_gray_deep">#666666</color>
     <color name="cp_color_gray_dark">#333333</color>
-    <color name="cp_color_section_bg">#EDEDED</color>
+    <color name="cp_color_section_bg">#DEDEDE</color>
+    <color name="cp_color_section_bg_deep">#f5f5f5</color>
+<!--    <color name="cp_color_section_bg">#EDEDED</color>-->
+    <color name="cp_color_section_bg_back">#ffffff</color>
     <color name="cp_color_grid_item_bg">#f5f5f5</color>
     <color name="color_green">#13D1BE</color>
 </resources>
