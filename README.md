@@ -52,7 +52,7 @@
 -   开放了一些新的接口
 
 ### 什么样子的
-<img src="art/city_picker.png">
+<img src="art/city_picker.jpg">
 
 [点击下载demo](https://fir.im/pyec)
 
