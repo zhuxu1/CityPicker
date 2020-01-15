@@ -44,10 +44,10 @@ apply plugin: 'com.jfrog.bintray'
 //项目主页
 def siteUrl = 'https://github.com/zhuxu1/CityPicker'
 //项目的版本控制地址
-def gitUrl = 'git@github.com:zhuxu1/CityPicker.git'
+def gitUrl = 'https://github.com/zhuxu1/CityPicker.git'
 
 //发布到组织名称名字，必须填写
-group = "com.utils.zhuxu"
+group = "com.utils.cocoz"
 //发布到JCenter上的项目名字，必须填写
 def libName = "CityPickerFixed"
 // 版本号，下次更新是只需要更改版本号即可
@@ -128,7 +128,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
     configurations = ['archives']
     pkg {
-        repo = "CityPickerFixed"
+        repo = "Utils"
         name = libName    //发布到JCenter上的项目名字，必须填写
         desc = 'the fixed version of CityPicker'    //项目描述
         websiteUrl = siteUrl
