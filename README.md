@@ -7,6 +7,8 @@
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
 #### How to use 使用方法：
+注意：2020-01-15 10:05:39 申请提交jcenter 通常需要几个小时时间  如果一直引用失败请稍等或提交issue
+如果有其它改进意见或想法可在issue中描述  
 ```
     compile 'com.utils.cocoz:citypicker:0.0.1'
 ```  
