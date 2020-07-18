@@ -18,6 +18,10 @@ public class CityPickerConfig implements Serializable {
     private String strHotCitiesIcon = "";
     // 是否自定义数据
     private boolean useCustomData = false;
+    // 是否使用自定义模块
+    private boolean useCustomModel = false;
+    // 自定义模块 标题
+    private String strCustomModel = "";
 
     /**
      *
@@ -33,6 +37,14 @@ public class CityPickerConfig implements Serializable {
         this.strHotCities = strHotCities;
         this.strHotCitiesIcon = strHotCitiesIcon;
         this.useCustomData = useCustomData;
+    }
+
+    public boolean isUseCustomModel() {
+        return useCustomModel;
+    }
+
+    public void setUseCustomModel(boolean useCustomModel) {
+        this.useCustomModel = useCustomModel;
     }
 
     public String getStrHotCitiesIcon() {
@@ -79,4 +91,15 @@ public class CityPickerConfig implements Serializable {
         return !TextUtils.isEmpty(strHotCities);
     }
 
+    public String getStrCustomModelTitle() {
+        return strCustomModel;
+    }
+
+    public void setStrCustomModelTitle(String strCustomModel) {
+        this.strCustomModel = strCustomModel;
+    }
+
+    public boolean hasSetStrCustomModel() {
+        return !TextUtils.isEmpty(strCustomModel);
+    }
 }

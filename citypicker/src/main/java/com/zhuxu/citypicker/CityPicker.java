@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.zhuxu.citypicker.adapter.OnPickListener;
 import com.zhuxu.citypicker.model.City;
@@ -34,6 +33,7 @@ public class CityPicker {
     private int mAnimStyle;
     private LocatedCity mLocation;
     private List<HotCity> mHotCities;
+    private List<HotCity> mCustomModelData;
     private OnPickListener mOnPickListener;
     // 新增的参数
     private CityPickerConfig cityPickerConfig = new CityPickerConfig();
@@ -78,7 +78,26 @@ public class CityPicker {
     }
 
     /**
-     * 设置当前已经定位的城市
+     * 设置是否使用自定义数据模块
+     * @return
+     */
+    public CityPicker setCustomModel(boolean enable, String title, List<HotCity> mCustomModelData) {
+        cityPickerConfig.setUseCustomModel(enable);
+        if (!enable) {
+            return this;
+        }
+        this.mCustomModelData = mCustomModelData;
+        cityPickerConfig.setStrCustomModelTitle(title);
+        return this;
+    }
+
+    public CityPicker setCustomModel(boolean enable) {
+        cityPickerConfig.setUseCustomModel(enable);
+        return this;
+    }
+
+    /**
+     * 设置自定义模块内容
      *
      * @param location
      * @return
@@ -89,11 +108,6 @@ public class CityPicker {
             return this;
         }
         this.mLocation = location;
-        return this;
-    }
-
-    public CityPicker setLocatedCity(boolean enable) {
-        cityPickerConfig.setShowLocation(enable);
         return this;
     }
 
@@ -221,6 +235,7 @@ public class CityPicker {
                 CityPickerDialogFragment.newInstance(enableAnim, cityPickerConfig);
         cityPickerFragment.setLocatedCity(mLocation);
         cityPickerFragment.setHotCities(mHotCities);
+        cityPickerFragment.setCustomModelList(mCustomModelData);
         cityPickerFragment.setAnimationStyle(mAnimStyle);
         cityPickerFragment.setIconTxt(cityPickerConfig.getStrHotCitiesIcon());
         cityPickerFragment.setOnPickListener(mOnPickListener);

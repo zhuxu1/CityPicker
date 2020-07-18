@@ -12,7 +12,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,20 +33,24 @@ import java.util.List;
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseViewHolder> {
     private static final int VIEW_TYPE_LOCATION = 10;
     private static final int VIEW_TYPE_HOT = 11;
+    private static final int VIEW_TYPE_CUSTOM = 12;
 
     private Context mContext;
     private List<City> mData;
     private List<HotCity> mHotData;
+    // 自定义模块
+    private List<HotCity> mCustomModelData;
     private int locateState;
     private InnerListener mInnerListener;
     private LinearLayoutManager mLayoutManager;
     private boolean stateChanged;
     private boolean autoLocate;
 
-    public CityListAdapter(Context context, List<City> data, List<HotCity> hotData, int state) {
+    public CityListAdapter(Context context, List<City> data, List<HotCity> hotData, List<HotCity> customData, int state) {
         this.mData = data;
         this.mContext = context;
         this.mHotData = hotData;
+        this.mCustomModelData = customData;
         this.locateState = state;
     }
 
@@ -131,6 +134,9 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             case VIEW_TYPE_HOT:
                 view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
                 return new HotViewHolder(view);
+            case VIEW_TYPE_CUSTOM:
+                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
+                return new CustomViewHolder(view);
             default:
                 view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_default_layout, parent, false);
                 return new DefaultViewHolder(view);
@@ -224,6 +230,15 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             mAdapter.setIconTxt(iconTxt);
             ((HotViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
         }
+        //自定义模块
+        if (holder instanceof CustomViewHolder) {
+            final int pos = holder.getAdapterPosition();
+            final City data = mData.get(pos);
+            if (data == null) return;
+            GridListAdapter mAdapter = new GridListAdapter(mContext, mCustomModelData);
+            mAdapter.setInnerListener(mInnerListener);
+            ((CustomViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
+        }
     }
 
     @Override
@@ -238,6 +253,10 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         }
         if (TextUtils.equals("定位城市", mData.get(position).getSection())) {
             return VIEW_TYPE_LOCATION;
+        }
+        if (TextUtils.equals(cityPickerConfig == null ? "最近访问城市" : cityPickerConfig.getStrCustomModelTitle()
+                , mData.get(position).getSection())) {
+            return VIEW_TYPE_CUSTOM;
         }
         return super.getItemViewType(position);
     }
@@ -258,6 +277,21 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         DefaultViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.cp_list_item_name);
+        }
+    }
+
+    public static class CustomViewHolder extends BaseViewHolder {
+        RecyclerView mRecyclerView;
+
+        CustomViewHolder(View itemView) {
+            super(itemView);
+            mRecyclerView = itemView.findViewById(R.id.cp_hot_list);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(),
+                    GridListAdapter.SPAN_COUNT, LinearLayoutManager.VERTICAL, false));
+            int space = itemView.getContext().getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
+            mRecyclerView.addItemDecoration(new GridItemDecoration(GridListAdapter.SPAN_COUNT,
+                    space));
         }
     }
 

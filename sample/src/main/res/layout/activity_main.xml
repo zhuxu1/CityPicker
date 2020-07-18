@@ -1,110 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_current"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:gravity="center"
-        android:text="当前城市：杭州"
-        android:textSize="18sp" />
-
-    <CheckBox
-        android:id="@+id/cb_hot"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="指定热门城市"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/cb_ccity_enable"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="使用自定义列表数据"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/cb_ccity_hot_enable"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="使用自定义热门列表数据"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/cb_hot_enable"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:checked="true"
-        android:text="开启热门城市"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/edt_hot_title"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="输入热门城市位置要显示的标题"
-        android:textColor="@color/cp_color_gray_dark"
-        android:textColorHint="@color/cp_color_gray"
-        android:textSize="14sp" />
-
-    <EditText
-        android:id="@+id/edt_hot_title_type"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="输入热门城市下要显示的小标内容"
-        android:textColor="@color/cp_color_gray_dark"
-        android:textColorHint="@color/cp_color_gray"
-        android:textSize="14sp" />
-
-    <CheckBox
-        android:id="@+id/cb_location_enable"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:checked="true"
-        android:text="开启定位显示"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/cb_enable_anim"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:checked="true"
-        android:text="启用动画效果"
-        android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/cb_anim"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="自定义动画"
-        android:textSize="16sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点击更换：" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_style"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:text="默认主题"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_current"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:gravity="center"
+            android:text="当前城市：杭州"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btn_pick"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
-        android:text="选择城市"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
-</LinearLayout>
+        <CheckBox
+            android:id="@+id/cb_hot"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="指定热门城市"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_ccity_enable"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="使用自定义列表数据"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_ccity_hot_enable"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="使用自定义热门列表数据"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_hot_enable"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:text="开启热门城市"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edt_hot_title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="输入热门城市位置要显示的标题"
+            android:textColor="@color/cp_color_gray_dark"
+            android:textColorHint="@color/cp_color_gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edt_hot_title_type"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="输入热门城市下要显示的小标内容"
+            android:textColor="@color/cp_color_gray_dark"
+            android:textColorHint="@color/cp_color_gray"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/cb_zdy_enable"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:text="开启自定义模块"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edt_zdy_title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="输入自定义模块位置要显示的标题"
+            android:textColor="@color/cp_color_gray_dark"
+            android:textColorHint="@color/cp_color_gray"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/cb_location_enable"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:text="开启定位显示"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_enable_anim"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:text="启用动画效果"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_anim"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="自定义动画"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击更换：" />
+
+        <Button
+            android:id="@+id/btn_style"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:text="默认主题"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_pick"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorPrimary"
+            android:text="选择城市"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>

@@ -100,6 +100,7 @@ City selection / lists that require initial grouping
 -   优化修改API配置调用方法
 -   新增热门城市部分标题、图标内容修改
 -   更新README文件
+-   新增自定义模块(当前BUG：必须设置标题后自定义模块才会生效)
 
 ### 2020-1-15  v0.0.1
 -   修改热门城市样式

@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.zhuxu.citypicker.CityPicker;
 import com.zhuxu.citypicker.adapter.OnPickListener;
 import com.zhuxu.citypicker.model.City;
-import com.zhuxu.citypicker.model.CityPickerConfig;
 import com.zhuxu.citypicker.model.HotCity;
 import com.zhuxu.citypicker.model.LocateState;
 import com.zhuxu.citypicker.model.LocatedCity;
@@ -87,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 String strHotCityTitle = ((EditText) findViewById(R.id.edt_hot_title)).getText().toString();
                 String strHotCityTitleIcon = ((EditText) findViewById(R.id.edt_hot_title_type)).getText().toString();
 
+                boolean showCustomModel = ((CheckBox) findViewById(R.id.cb_zdy_enable)).isChecked();
+                String strCustomModelTitle = ((EditText) findViewById(R.id.edt_zdy_title)).getText().toString();
+
                 CityPicker.from(MainActivity.this)
                         // 设置动画及数据
                         .setAnimation(showAnim, anim)
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .setCustomData(showCustomList, getListData())
                         // 设置热门城市部分的显示
                         .setHotModel(strHotCityTitle, strHotCityTitleIcon)
+                        .setCustomModel(showCustomModel, strCustomModelTitle, getCustomListData())
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, City data) {
@@ -139,10 +142,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         return listData;
     }
 
-    private ArrayList<HotCity> getHotListData() {
+    private ArrayList<HotCity> getCustomListData() {
         ArrayList<HotCity> listData = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            listData.add(new HotCity("热门" + i, "测试", i + ""));
+            HotCity hotCity = new HotCity("自定义" + i, "测试", i + "");
+            hotCity.setHot(false);
+            listData.add(hotCity);
         }
         return listData;
     }

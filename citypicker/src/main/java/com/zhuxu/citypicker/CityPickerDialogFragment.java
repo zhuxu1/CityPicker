@@ -67,8 +67,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
     private List<HotCity> mHotCities;
     private List<City> mResults;
     private List<City> mList_custom;
-    private List<HotCity> mListHot_custom;
-
+    private List<HotCity> mCustomModelData;
 
     private DBManager dbManager;
 
@@ -120,6 +119,12 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         }
     }
 
+    public void setCustomModelList(List<HotCity> data) {
+        if (data != null && !data.isEmpty()) {
+            this.mCustomModelData = data;
+        }
+    }
+
     @SuppressLint("ResourceType")
     public void setAnimationStyle(@StyleRes int resId) {
         this.mAnimStyle = resId <= 0 ? mAnimStyle : resId;
@@ -146,7 +151,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new SectionItemDecoration(getActivity(), mAllCities), 0);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), mAllCities), 1);
-        mAdapter = new CityListAdapter(getActivity(), mAllCities, mHotCities, locateState);
+        mAdapter = new CityListAdapter(getActivity(), mAllCities, mHotCities, mCustomModelData, locateState);
         mAdapter.autoLocate(true);
         mAdapter.setInnerListener(this);
         mAdapter.setLayoutManager(mLayoutManager);
@@ -220,7 +225,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         }
         Log.e("zhuxu", "4=================================");
 
-        // 判断是否使用自定义数据
+        // 判断是否使用自定义列表数据
         if (!config.isUseCustomData()) {
             dbManager = new DBManager(getActivity());
             mAllCities = dbManager.getAllCities();
@@ -240,11 +245,19 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         }
         Log.e("zhuxu", "6=================================");
 
+        // 是否显示自定义模块
+        if (config.isUseCustomModel()) {
+            HotCity hotCity = new HotCity(config.hasSetStrCustomModel() ? config.getStrCustomModelTitle() : "最近访问城市",
+                    "未知", "0");
+            mAllCities.add(0, hotCity);
+        }
+        Log.e("zhuxu", "7=================================");
+
         // 是否显示定位
         if (config.isShowLocation()) {
             mAllCities.add(0, mLocatedCity);
         }
-        Log.e("zhuxu", "7=================================");
+        Log.e("zhuxu", "8=================================");
 
         mResults = mAllCities;
     }
@@ -369,15 +382,6 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
      */
     public void setCustomData(ArrayList<City> list) {
         this.mList_custom = list;
-    }
-
-    /**
-     * 设置自定义热门数据
-     *
-     * @param list
-     */
-    public void setCustomHotData(ArrayList<HotCity> list) {
-        this.mListHot_custom = list;
     }
 
     @Override

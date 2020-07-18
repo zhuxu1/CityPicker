@@ -42,7 +42,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
 
         dividerHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0.5f, context.getResources().getDisplayMetrics());
-        dividerHeight_big = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10f, context.getResources().getDisplayMetrics());
+        dividerHeight_big = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2f, context.getResources().getDisplayMetrics());
     }
 
     @Override

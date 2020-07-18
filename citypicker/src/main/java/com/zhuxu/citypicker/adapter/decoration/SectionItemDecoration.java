@@ -102,7 +102,8 @@ public class SectionItemDecoration extends RecyclerView.ItemDecoration {
                 child.getTop() - params.topMargin, mBgPaint);
         // 字母“A”的背景部分下方的分割线
         if (!mData.get(position).getSection().equals("定位城市") && !mData.get(position).getSection().equals("热门城市")) {
-            c.drawRect(left + 40, child.getTop() - params.topMargin, right - 120, child.getTop() - params.topMargin + dividerHeight, mPaint_divider_head);
+            c.drawRect(left + 40, child.getTop() - params.topMargin, right - 120,
+                    child.getTop() - params.topMargin + dividerHeight, mPaint_divider_head);
         }
         mTextPaint.getTextBounds(mData.get(position).getSection(),
                 0,
