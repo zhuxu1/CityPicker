@@ -80,18 +80,24 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         findViewById(R.id.btn_pick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean showAnim = ((CheckBox) findViewById(R.id.cb_enable_anim)).isChecked();
+                boolean showHot = ((CheckBox) findViewById(R.id.cb_hot_enable)).isChecked();
+                boolean showLocation = ((CheckBox) findViewById(R.id.cb_location_enable)).isChecked();
+                boolean showCustomList = ((CheckBox) findViewById(R.id.cb_ccity_enable)).isChecked();
+                String strHotCityTitle = ((EditText) findViewById(R.id.edt_hot_title)).getText().toString();
+                String strHotCityTitleIcon = ((EditText) findViewById(R.id.edt_hot_title_type)).getText().toString();
+
                 CityPicker.from(MainActivity.this)
-                        .enableAnimation(enable)
-                        .setAnimationStyle(anim)
-                        .setLocatedCity(null)
-                        .setHotCities(hotCities)
-                        .setConfig(getConfig())
-                        // 如果开启了自定义数据  则需要传输数据
-                        // 否则传输无效
-                        .setCustomData(getListData())
-                        // 如果开启了自定义热门数据  则需要传输数据
-                        // 否则传输无效
-                        .setCustomHotData(getHotListData())
+                        // 设置动画及数据
+                        .setAnimation(showAnim, anim)
+                        // 设置定位及数据
+                        .setLocatedCity(showLocation, new LocatedCity("北京", "北京", "110000"))
+                        // 设置热门城市及数据
+                        .setHotCities(showHot, null)
+                        // 设置自定义列表数据
+                        .setCustomData(showCustomList, getListData())
+                        // 设置热门城市部分的显示
+                        .setHotModel(strHotCityTitle, strHotCityTitleIcon)
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, City data) {
@@ -114,7 +120,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        CityPicker.from(MainActivity.this).locateComplete(new LocatedCity("深圳", "广东", "101280601"), LocateState.SUCCESS);
+                                        CityPicker.from(MainActivity.this).locateComplete(
+                                                new LocatedCity("深圳", "广东", "101280601"), LocateState.SUCCESS);
                                     }
                                 }, 3000);
                             }
@@ -140,27 +147,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         return listData;
     }
 
-
-    /**
-     * 相关参数
-     *
-     * @return
-     */
-    private CityPickerConfig getConfig() {
-        CityPickerConfig cityPickerConfig = new CityPickerConfig();
-        // 设置是否显示热门城市
-        cityPickerConfig.setShowHotCities(((CheckBox) findViewById(R.id.cb_hot_enable)).isChecked());
-        // 设置是否显示定位
-        cityPickerConfig.setShowLocation(((CheckBox) findViewById(R.id.cb_location_enable)).isChecked());
-        // 设置热门城市的标题
-        cityPickerConfig.setStrHotCities(((EditText) findViewById(R.id.edt_hot_title)).getText().toString());
-        // 设置是否使用自定义数据  通过 setCustomData 传输数据
-        cityPickerConfig.setUseCustomData(((CheckBox) findViewById(R.id.cb_ccity_enable)).isChecked());
-        // 设置是否使用自定义热门数据  通过 setCustomHotData 传输数据
-        cityPickerConfig.setUseCustomHotData(((CheckBox) findViewById(R.id.cb_ccity_hot_enable)).isChecked());
-        return cityPickerConfig;
-    }
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -177,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 }
                 break;
             case R.id.cb_anim:
-                anim = isChecked ? R.style.CustomAnim : R.style.DefaultCityPickerAnimation;
+                anim = isChecked ? R.style.CustomAnim : 0;
                 break;
             case R.id.cb_enable_anim:
                 enable = isChecked;

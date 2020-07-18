@@ -34,6 +34,12 @@ public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridVi
         this.mData = data;
     }
 
+    private String iconTxt = "热";
+
+    public void setIconTxt(String iconTxt) {
+        this.iconTxt = iconTxt;
+    }
+
     @Override
     public GridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.cp_grid_item_layout, parent, false);
@@ -62,7 +68,7 @@ public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.GridVi
         holder.name.setText(data.getName());
         if (data.isHot()) {
             holder.type.setVisibility(View.VISIBLE);
-            holder.type.setText("热");
+            holder.type.setText(iconTxt);
         } else {
             holder.type.setVisibility(View.GONE);
         }

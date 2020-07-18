@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.zhuxu.citypicker.adapter.OnPickListener;
 import com.zhuxu.citypicker.model.City;
@@ -33,9 +35,9 @@ public class CityPicker {
     private LocatedCity mLocation;
     private List<HotCity> mHotCities;
     private OnPickListener mOnPickListener;
-    private CityPickerConfig cityPickerConfig;
+    // 新增的参数
+    private CityPickerConfig cityPickerConfig = new CityPickerConfig();
     private ArrayList<City> custom_listdata;
-    private ArrayList<HotCity> custom_hot_listdata;
 
     private CityPicker() {
     }
@@ -53,6 +55,7 @@ public class CityPicker {
     private CityPicker(FragmentActivity activity, Fragment fragment) {
         mContext = new WeakReference<>(activity);
         mFragment = new WeakReference<>(fragment);
+        cityPickerConfig = new CityPickerConfig();
     }
 
     public static CityPicker from(Fragment fragment) {
@@ -80,13 +83,59 @@ public class CityPicker {
      * @param location
      * @return
      */
-    public CityPicker setLocatedCity(LocatedCity location) {
+    public CityPicker setLocatedCity(boolean enable, LocatedCity location) {
+        cityPickerConfig.setShowLocation(enable);
+        if (!enable) {
+            return this;
+        }
         this.mLocation = location;
         return this;
     }
 
-    public CityPicker setHotCities(List<HotCity> data) {
+    public CityPicker setLocatedCity(boolean enable) {
+        cityPickerConfig.setShowLocation(enable);
+        return this;
+    }
+
+    /**
+     * 设置热门城市信息
+     *
+     * @param enable 是否启用热门城市
+     * @param data   热门城市数据,如需使用默认则设为null
+     * @return
+     */
+    public CityPicker setHotCities(boolean enable, List<HotCity> data) {
+        cityPickerConfig.setShowHotCities(enable);
+        if (!enable) {
+            return this;
+        }
         this.mHotCities = data;
+        return this;
+    }
+
+    public CityPicker setHotCities(boolean enable) {
+        cityPickerConfig.setShowHotCities(enable);
+        return this;
+    }
+
+    /**
+     * 设置热门城市部分内容
+     *
+     * @param title   设置“热门城市”标题
+     * @param iconTxt 设置“热门城市”模块下的标记内容
+     * @return
+     */
+    public CityPicker setHotModel(String title, String iconTxt) {
+        if (title == null || TextUtils.isEmpty(title)) {
+            cityPickerConfig.setStrHotCities("热门城市");
+        } else {
+            cityPickerConfig.setStrHotCities(title);
+        }
+        if (iconTxt == null || TextUtils.isEmpty(iconTxt)) {
+            cityPickerConfig.setStrHotCitiesIcon("热");
+        } else {
+            cityPickerConfig.setStrHotCitiesIcon(iconTxt);
+        }
         return this;
     }
 
@@ -96,40 +145,56 @@ public class CityPicker {
      * @param config
      * @return
      */
-    public CityPicker setConfig(CityPickerConfig config) {
+    public CityPicker setConfig(boolean enable, CityPickerConfig config) {
         this.cityPickerConfig = config;
         return this;
     }
 
     /**
      * 自定义数据
+     *
      * @param listdata
      * @return
      */
-    public CityPicker setCustomData(ArrayList<City> listdata) {
+    public CityPicker setCustomData(boolean enable, ArrayList<City> listdata) {
+        cityPickerConfig.setUseCustomData(enable);
+        if (!enable) {
+            return this;
+        }
         this.custom_listdata = listdata;
         return this;
     }
 
-    /**
-     * 自定义热门数据
-     * @param listdata
-     * @return
-     */
-    public CityPicker setCustomHotData(ArrayList<HotCity> listdata) {
-        this.custom_hot_listdata = listdata;
+    public CityPicker setCustomData(boolean enable) {
+        cityPickerConfig.setUseCustomData(enable);
         return this;
     }
-
 
     /**
      * 启用动画效果，默认为false
      *
-     * @param enable
+     * @param enable    是否开启动画
+     * @param animStyle 动画效果 如果enable为true且animStyle为0，则自动加载默认动画
      * @return
      */
-    public CityPicker enableAnimation(boolean enable) {
+    public CityPicker setAnimation(boolean enable, int animStyle) {
         this.enableAnim = enable;
+        if (!enable) {
+            return this;
+        }
+        if (enableAnim && animStyle == 0) {
+            setAnimationStyle(R.style.DefaultCityPickerAnimation);
+        } else {
+            setAnimationStyle(animStyle);
+        }
+        return this;
+    }
+
+    public CityPicker setAnimation(boolean enable) {
+        this.enableAnim = enable;
+        if (enableAnim) {
+            setAnimationStyle(R.style.DefaultCityPickerAnimation);
+        }
         return this;
     }
 
@@ -157,13 +222,14 @@ public class CityPicker {
         cityPickerFragment.setLocatedCity(mLocation);
         cityPickerFragment.setHotCities(mHotCities);
         cityPickerFragment.setAnimationStyle(mAnimStyle);
+        cityPickerFragment.setIconTxt(cityPickerConfig.getStrHotCitiesIcon());
         cityPickerFragment.setOnPickListener(mOnPickListener);
-        if (cityPickerConfig.isUseCustomData()){
+        if (cityPickerConfig.isUseCustomData()) {
             cityPickerFragment.setCustomData(custom_listdata);
         }
-        if (cityPickerConfig.isUseCustomHotData()){
-            cityPickerFragment.setCustomHotData(custom_hot_listdata);
-        }
+//        if (cityPickerConfig.isUseCustomHotData()) {
+//            cityPickerFragment.setCustomHotData(custom_hot_listdata);
+//        }
         cityPickerFragment.show(ft, TAG);
     }
 

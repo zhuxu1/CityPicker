@@ -83,6 +83,12 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
 
     public static String CITY_PICKER_DIALOG_CONFIG_FLAG = "dialog_config";
 
+    private String iconTxt = "热";
+
+    public void setIconTxt(String iconTxt) {
+        this.iconTxt = iconTxt;
+    }
+
     /**
      * 获取实例
      *
@@ -144,6 +150,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         mAdapter.autoLocate(true);
         mAdapter.setInnerListener(this);
         mAdapter.setLayoutManager(mLayoutManager);
+        mAdapter.setIconTxt(iconTxt);
         if (config.hasSetStrHotCities() && mAdapter != null) {
             mAdapter.setConfig(config);
         }
@@ -183,31 +190,27 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
 
     private void initData() {
         Bundle args = getArguments();
-        Log.e("zhuxu","1=================================");
+        Log.e("zhuxu", "1=================================");
         if (args != null) {
             enableAnim = args.getBoolean("cp_enable_anim");
             config = (CityPickerConfig) args.getSerializable(CITY_PICKER_DIALOG_CONFIG_FLAG);
         }
-        Log.e("zhuxu","2=================================");
+        Log.e("zhuxu", "2=================================");
         //初始化热门城市
         if (mHotCities == null || mHotCities.isEmpty()) {
             // 是否使用自定义热门城市
-            if (config.isUseCustomHotData()) {
-                mHotCities = mListHot_custom;
-            } else {
-                mHotCities = new ArrayList<>();
-                mHotCities.add(new HotCity("北京", "北京", "101010100"));
-                mHotCities.add(new HotCity("上海", "上海", "101020100"));
-                mHotCities.add(new HotCity("广州", "广东", "101280101"));
-                mHotCities.add(new HotCity("深圳", "广东", "101280601"));
-                mHotCities.add(new HotCity("天津", "天津", "101030100"));
-                mHotCities.add(new HotCity("杭州", "浙江", "101210101"));
-                mHotCities.add(new HotCity("南京", "江苏", "101190101"));
-                mHotCities.add(new HotCity("成都", "四川", "101270101"));
-                mHotCities.add(new HotCity("武汉", "湖北", "101200101"));
-            }
+            mHotCities = new ArrayList<>();
+            mHotCities.add(new HotCity("北京", "北京", "101010100"));
+            mHotCities.add(new HotCity("上海", "上海", "101020100"));
+            mHotCities.add(new HotCity("广州", "广东", "101280101"));
+            mHotCities.add(new HotCity("深圳", "广东", "101280601"));
+            mHotCities.add(new HotCity("天津", "天津", "101030100"));
+            mHotCities.add(new HotCity("杭州", "浙江", "101210101"));
+            mHotCities.add(new HotCity("南京", "江苏", "101190101"));
+            mHotCities.add(new HotCity("成都", "四川", "101270101"));
+            mHotCities.add(new HotCity("武汉", "湖北", "101200101"));
         }
-        Log.e("zhuxu","3=================================");
+        Log.e("zhuxu", "3=================================");
         //初始化定位城市，默认为空时会自动回调定位
         if (mLocatedCity == null) {
             mLocatedCity = new LocatedCity(getString(R.string.cp_locating), "未知", "0");
@@ -215,7 +218,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             locateState = LocateState.SUCCESS;
         }
-        Log.e("zhuxu","4=================================");
+        Log.e("zhuxu", "4=================================");
 
         // 判断是否使用自定义数据
         if (!config.isUseCustomData()) {
@@ -224,7 +227,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             mAllCities = mList_custom;
         }
-        Log.e("zhuxu","5=================================");
+        Log.e("zhuxu", "5=================================");
 
         // 初始化拼音数据
         initPinyinData(mAllCities);
@@ -235,13 +238,13 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             hotCity.setHot();
             mAllCities.add(0, hotCity);
         }
-        Log.e("zhuxu","6=================================");
+        Log.e("zhuxu", "6=================================");
 
         // 是否显示定位
         if (config.isShowLocation()) {
             mAllCities.add(0, mLocatedCity);
         }
-        Log.e("zhuxu","7=================================");
+        Log.e("zhuxu", "7=================================");
 
         mResults = mAllCities;
     }

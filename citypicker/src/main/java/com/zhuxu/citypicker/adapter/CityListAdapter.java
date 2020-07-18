@@ -51,6 +51,12 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         this.locateState = state;
     }
 
+    private String iconTxt = "热";
+
+    public void setIconTxt(String iconTxt) {
+        this.iconTxt = iconTxt;
+    }
+
     CityPickerConfig cityPickerConfig;
 
     public void setConfig(CityPickerConfig config) {
@@ -215,6 +221,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             if (data == null) return;
             GridListAdapter mAdapter = new GridListAdapter(mContext, mHotData);
             mAdapter.setInnerListener(mInnerListener);
+            mAdapter.setIconTxt(iconTxt);
             ((HotViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
         }
     }

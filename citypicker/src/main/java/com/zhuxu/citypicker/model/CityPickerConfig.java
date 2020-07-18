@@ -5,12 +5,42 @@ import android.text.TextUtils;
 import java.io.Serializable;
 
 public class CityPickerConfig implements Serializable {
-    public boolean isUseCustomHotData() {
-        return useCustomHotData;
+    public CityPickerConfig() {
     }
 
-    public void setUseCustomHotData(boolean useCustomHotData) {
-        this.useCustomHotData = useCustomHotData;
+    // 是否显示 定位城市栏
+    private boolean showLocation;
+    // 是否显示 热门城市栏
+    private boolean showHotCities;
+    // 热门城市 标题
+    private String strHotCities = "";
+    // 热门城市 小标内容
+    private String strHotCitiesIcon = "";
+    // 是否自定义数据
+    private boolean useCustomData = false;
+
+    /**
+     *
+     * @param showLocation 是否显示 定位城市栏
+     * @param showHotCities 是否显示 热门城市栏
+     * @param strHotCities 热门城市 标题
+     * @param strHotCitiesIcon 热门城市 小标内容
+     * @param useCustomData 是否自定义数据
+     */
+    public CityPickerConfig(boolean showLocation, boolean showHotCities, String strHotCities, String strHotCitiesIcon, boolean useCustomData) {
+        this.showLocation = showLocation;
+        this.showHotCities = showHotCities;
+        this.strHotCities = strHotCities;
+        this.strHotCitiesIcon = strHotCitiesIcon;
+        this.useCustomData = useCustomData;
+    }
+
+    public String getStrHotCitiesIcon() {
+        return strHotCitiesIcon;
+    }
+
+    public void setStrHotCitiesIcon(String strHotCitiesIcon) {
+        this.strHotCitiesIcon = strHotCitiesIcon;
     }
 
     public boolean isUseCustomData() {
@@ -48,20 +78,5 @@ public class CityPickerConfig implements Serializable {
     public boolean hasSetStrHotCities() {
         return !TextUtils.isEmpty(strHotCities);
     }
-
-    // 是否显示 定位城市栏
-    private boolean showLocation;
-
-    // 是否显示 热门城市栏
-    private boolean showHotCities;
-
-    // 热门城市 标题
-    private String strHotCities = "";
-
-    // 是否自定义数据
-    private boolean useCustomData = false;
-
-    // 是否自定义热门城市数据
-    private boolean useCustomHotData = false;
 
 }

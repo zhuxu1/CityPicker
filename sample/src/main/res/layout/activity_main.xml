@@ -51,6 +51,15 @@
         android:textColorHint="@color/cp_color_gray"
         android:textSize="14sp" />
 
+    <EditText
+        android:id="@+id/edt_hot_title_type"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="输入热门城市下要显示的小标内容"
+        android:textColor="@color/cp_color_gray_dark"
+        android:textColorHint="@color/cp_color_gray"
+        android:textSize="14sp" />
+
     <CheckBox
         android:id="@+id/cb_location_enable"
         android:layout_width="match_parent"

@@ -15,6 +15,7 @@
         <item name="cpIndexBarSelectedTextColor">@color/color_green</item>
         <item name="cpSectionHeight">@dimen/custom_section_height</item>
         <item name="cpOverlayBackground">@color/color_green</item>
+        <item name="cpListItemHotBackGround">@drawable/shape_back_hot</item>
     </style>
 
     <style name="CustomAnim">
