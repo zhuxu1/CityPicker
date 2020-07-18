@@ -79,6 +79,9 @@ public class CityPicker {
 
     /**
      * 设置是否使用自定义数据模块
+     * @param enable 是否开启自定义数据模块
+     * @param title  自定义数据模块的标题
+     * @param mCustomModelData 自定义数据模块的列表数据
      * @return
      */
     public CityPicker setCustomModel(boolean enable, String title, List<HotCity> mCustomModelData) {
@@ -87,7 +90,7 @@ public class CityPicker {
             return this;
         }
         this.mCustomModelData = mCustomModelData;
-        cityPickerConfig.setStrCustomModelTitle(title);
+        cityPickerConfig.setStrCustomModelTitle(TextUtils.isEmpty(title) ? "自定义模块" : title);
         return this;
     }
 
@@ -99,7 +102,7 @@ public class CityPicker {
     /**
      * 设置自定义模块内容
      *
-     * @param location
+     * @param location 定位信息
      * @return
      */
     public CityPicker setLocatedCity(boolean enable, LocatedCity location) {
@@ -166,8 +169,8 @@ public class CityPicker {
 
     /**
      * 自定义数据
-     *
-     * @param listdata
+     * @param enable 是否启用自定义数据，启用自定义数据将会代替现有数据库数据
+     * @param listdata 自定义数据
      * @return
      */
     public CityPicker setCustomData(boolean enable, ArrayList<City> listdata) {

@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .setCustomData(showCustomList, getListData())
                         // 设置热门城市部分的显示
                         .setHotModel(strHotCityTitle, strHotCityTitleIcon)
+                        // 设置自定义模块显示
                         .setCustomModel(showCustomModel, strCustomModelTitle, getCustomListData())
                         .setOnPickListener(new OnPickListener() {
                             @Override

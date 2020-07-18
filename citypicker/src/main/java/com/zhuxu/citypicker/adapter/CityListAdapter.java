@@ -64,6 +64,9 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
 
     public void setConfig(CityPickerConfig config) {
         cityPickerConfig = config;
+        if (cityPickerConfig == null) {
+            cityPickerConfig = new CityPickerConfig();
+        }
     }
 
     public void autoLocate(boolean auto) {
@@ -254,8 +257,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         if (TextUtils.equals("定位城市", mData.get(position).getSection())) {
             return VIEW_TYPE_LOCATION;
         }
-        if (TextUtils.equals(cityPickerConfig == null ? "最近访问城市" : cityPickerConfig.getStrCustomModelTitle()
-                , mData.get(position).getSection())) {
+        if (TextUtils.equals(cityPickerConfig.getStrCustomModelTitle(), mData.get(position).getSection())) {
             return VIEW_TYPE_CUSTOM;
         }
         return super.getItemViewType(position);

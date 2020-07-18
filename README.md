@@ -15,18 +15,18 @@ City selection / lists that require initial grouping
 #### How to use 使用方法：
 如果有其它改进意见或想法可在issue中描述  
 ```
-    implementation 'com.utils.cocoz:citypicker:0.1.0'
+    implementation 'com.utils.cocoz:citypicker:0.2.0'
 ```  
 ```
    <dependency>
    	<groupId>com.utils.cocoz</groupId>
    	<artifactId>citypicker</artifactId>
-   	<version>0.1.0</version>
+   	<version>0.2.0</version>
    	<type>pom</type>
    </dependency>
 ```  
 ```
-   <dependency org="com.utils.cocoz" name="citypicker" rev="0.1.0">
+   <dependency org="com.utils.cocoz" name="citypicker" rev="0.2.0">
    	<artifact name="citypicker" ext="pom"></artifact>
    </dependency>
 ```  
@@ -51,6 +51,8 @@ City selection / lists that require initial grouping
                             .setCustomData(showCustomList, getListData())
                             // 设置热门城市部分的显示
                             .setHotModel(strHotCityTitle, strHotCityTitleIcon)
+                            // 设置自定义模块显示
+                            .setCustomModel(showCustomModel, strCustomModelTitle, getCustomListData())
                             .setOnPickListener(new OnPickListener() {
                                 @Override
                                 public void onPick(int position, City data) {
@@ -96,11 +98,11 @@ City selection / lists that require initial grouping
 -   提升最低版本号为16
 -   新增自动根据名称识别首字母，自定义数据一键排序
 
-### 2020-7-18  v0.1.0
+### 2020-7-18  v0.2.0
 -   优化修改API配置调用方法
 -   新增热门城市部分标题、图标内容修改
 -   更新README文件
--   新增自定义模块(当前BUG：必须设置标题后自定义模块才会生效)
+-   新增自定义模块
 
 ### 2020-1-15  v0.0.1
 -   修改热门城市样式
