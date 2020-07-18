@@ -6,7 +6,11 @@
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
+#### 这个框架干嘛的？ What's this?
+ 
 城市选择框架 / 需要首字母分组的列表
+City selection / lists that require initial grouping
+
 
 #### How to use 使用方法：
 如果有其它改进意见或想法可在issue中描述  
