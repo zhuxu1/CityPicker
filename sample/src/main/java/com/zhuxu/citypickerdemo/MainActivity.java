@@ -3,6 +3,7 @@ package com.zhuxu.citypickerdemo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhuxu.citypicker.CityPicker;
+import com.zhuxu.citypicker.SearchActionInterface;
 import com.zhuxu.citypicker.adapter.OnPickListener;
 import com.zhuxu.citypicker.model.City;
 import com.zhuxu.citypicker.model.HotCity;
@@ -105,10 +107,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, City data) {
-                                currentTV.setText(String.format("当前城市：%s，%s", data.getName(), data.getCode()));
+                                String result = "";
+                                if (TextUtils.equals(data.getType(), CityPicker.FLAG_LOCATION)) {
+                                    result = String.format("定位 当前城市：%s，%s", data.getName(), data.getCode());
+                                } else if (TextUtils.equals(data.getType(), CityPicker.FLAG_HOT)) {
+                                    result = String.format("热门 当前城市：%s，%s", data.getName(), data.getCode());
+                                } else if (TextUtils.equals(data.getType(), CityPicker.FLAG_LIST)) {
+                                    result = String.format("选择 当前城市：%s，%s", data.getName(), data.getCode());
+                                } else {
+                                    result = String.format("未知 当前城市：%s，%s", data.getName(), data.getCode());
+                                }
+//                                currentTV.setText(String.format("当前城市：%s，%s", data.getName(), data.getCode()));
+                                currentTV.setText(result);
                                 Toast.makeText(
                                         getApplicationContext(),
-                                        String.format("点击的数据：%s，%s", data.getName(), data.getCode()),
+                                        result,
+//                                        String.format("点击的数据：%s，%s", data.getName(), data.getCode()),
                                         Toast.LENGTH_SHORT)
                                         .show();
                             }
@@ -128,6 +142,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                                                 new LocatedCity("深圳", "广东", "101280601"), LocateState.SUCCESS);
                                     }
                                 }, 3000);
+                            }
+                        })
+                        .searchInterface(new SearchActionInterface() {
+                            @Override
+                            public void search(String keyWords) {
+                                /**
+                                 * 此处编写你的搜索逻辑
+                                 * 并使用updateResult()回调来更新数据
+                                 */
+//                                Toast.makeText(getBaseContext(), "搜索: " + keyWords, Toast.LENGTH_SHORT).show();
+                                ArrayList<City> cityArrayList = new ArrayList<>();
+                                cityArrayList.add(new City(keyWords + " 1", "", "", ""));
+                                cityArrayList.add(new City(keyWords + " 2", "", "", ""));
+                                cityArrayList.add(new City(keyWords + " 3", "", "", ""));
+                                cityArrayList.add(new City("山东" + keyWords + " 5", "", "", ""));
+                                cityArrayList.add(new City("英国" + keyWords + " 5", "", "", ""));
+                                cityArrayList.add(new City("美国" + keyWords + " 5", "", "", ""));
+                                cityArrayList.add(new City("广东" + keyWords + " 5", "", "", ""));
+                                CityPicker.from(MainActivity.this).updateResult(cityArrayList);
                             }
                         })
                         .show();

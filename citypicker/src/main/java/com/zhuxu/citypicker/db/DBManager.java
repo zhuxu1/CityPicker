@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.github.promeg.pinyinhelper.Pinyin;
+import com.zhuxu.citypicker.CityPicker;
 import com.zhuxu.citypicker.model.City;
 
 import java.io.File;
@@ -88,6 +89,7 @@ public class DBManager {
             String pinyin = cursor.getString(cursor.getColumnIndex(COLUMN_C_PINYIN));
             String code = cursor.getString(cursor.getColumnIndex(COLUMN_C_CODE));
             city = new City(name, province, pinyin, code);
+            city.setType(CityPicker.FLAG_LIST);
             result.add(city);
         }
         Log.e("zhuxu", "city size is " + result.size());

@@ -15,18 +15,18 @@ City selection / lists that require initial grouping
 #### How to use 使用方法：
 如果有其它改进意见或想法可在issue中描述  
 ```
-    implementation 'com.utils.cocoz:citypicker:0.2.0'
+    implementation 'com.utils.cocoz:citypicker:0.3.0'
 ```  
 ```
    <dependency>
    	<groupId>com.utils.cocoz</groupId>
    	<artifactId>citypicker</artifactId>
-   	<version>0.2.0</version>
+   	<version>0.3.0</version>
    	<type>pom</type>
    </dependency>
 ```  
 ```
-   <dependency org="com.utils.cocoz" name="citypicker" rev="0.2.0">
+   <dependency org="com.utils.cocoz" name="citypicker" rev="0.3.0">
    	<artifact name="citypicker" ext="pom"></artifact>
    </dependency>
 ```  
@@ -37,6 +37,18 @@ City selection / lists that require initial grouping
 本打算自己留着用了，时间仓促，也没有太雕琢代码质量，单看到issue里有那么多问题，也不知道大家解决没有，但本着开源的原则，就把自己的版本发出来了  
 原来整体代码还是比较好看懂的，我又加了一些简单的备注，如果可能建议还是多尝试着自己看一看  
 
+#### 主要修改：
+-   新增可以配置是否开启“热门城市”
+-   新增可以配置是否开启“定位”
+-   开放接口自定义“热门城市”标题
+-   开放接口自定义“热门城市”内容数据
+-   修改数据库(现在数据库文件只包含市以上了)
+-   修复“没有内容时还可以点击到城市”的BUG
+-   修复“搜索不显示光标的BUG”
+-   开放接口自定义城市数据
+-   提升最低版本号为16
+-   新增自动根据名称识别首字母，自定义数据一键排序
+-   新增自定义搜索
 
 #### 新增主要内容使用方法:  
 ```
@@ -56,10 +68,20 @@ City selection / lists that require initial grouping
                             .setOnPickListener(new OnPickListener() {
                                 @Override
                                 public void onPick(int position, City data) {
-                                    currentTV.setText(String.format("当前城市：%s，%s", data.getName(), data.getCode()));
+                                    String result = "";
+                                    if (TextUtils.equals(data.getType(), CityPicker.FLAG_LOCATION)) {
+                                        result = String.format("定位 当前城市：%s，%s", data.getName(), data.getCode());
+                                    } else if (TextUtils.equals(data.getType(), CityPicker.FLAG_HOT)) {
+                                        result = String.format("热门 当前城市：%s，%s", data.getName(), data.getCode());
+                                    } else if (TextUtils.equals(data.getType(), CityPicker.FLAG_LIST)) {
+                                        result = String.format("选择 当前城市：%s，%s", data.getName(), data.getCode());
+                                    } else {
+                                        result = String.format("未知 当前城市：%s，%s", data.getName(), data.getCode());
+                                    }
+                                    currentTV.setText(result);
                                     Toast.makeText(
                                             getApplicationContext(),
-                                            String.format("点击的数据：%s，%s", data.getName(), data.getCode()),
+                                            result,
                                             Toast.LENGTH_SHORT)
                                             .show();
                                 }
@@ -81,22 +103,37 @@ City selection / lists that require initial grouping
                                     }, 3000);
                                 }
                             })
+                            .searchInterface(new SearchActionInterface() {
+                                @Override
+                                public void search(String keyWords) {
+                                    /**
+                                     * 此处编写你的搜索逻辑
+                                     * 并使用updateResult()回调来更新数据
+                                     */
+                                    Toast.makeText(getBaseContext(), "搜索: " + keyWords, Toast.LENGTH_SHORT).show();
+                                    CityPicker.from(MainActivity.this).updateResult(new ArrayList<City>());
+                                }
+                            })
                             .show();
 
-```  
+```
+#### Q:我该如何使用自动识别首字母并排序:
+A: 无需做任何设置，"pinyin"字段设为空即会触发自动识别逻辑
+#### Q:"data.getType"是什么意思
+A: 目前有三个,“热门城市”对应CityPicker.FLAG_HOT,“定位模块”对应CityPicker.FLAG_LOCATION,“列表”对应CityPicker.FLAG_LIST
+你可以通过设置自定义type来实现自定义逻辑
+#### Q:无法满足我的自定义需求怎么办？
+A: 你可以隐藏定位、热门城市、自定义模块，并手动添加head或添加页面固定布局  
+欢迎在issue中提交你的需求
+#### Q:搜索回调中可以自动排序吗?
+A: 可以，支持自动识别首字母拼音，自动排序.(需要设“pinyin”字段为空)
+  
 更多详细(如“如何修改颜色样式”)用法请[请查看原文链接](https://github.com/zaaach/CityPicker)
 
-#### 主要修改：
--   新增可以配置是否开启“热门城市”
--   新增可以配置是否开启“定位”
--   开放接口自定义“热门城市”标题
--   开放接口自定义“热门城市”内容数据
--   修改数据库(现在数据库文件只包含市以上了)
--   修复“没有内容时还可以点击到城市”的BUG
--   修复“搜索不显示光标的BUG”
--   开放接口自定义城市数据
--   提升最低版本号为16
--   新增自动根据名称识别首字母，自定义数据一键排序
+### 2020-7-20  V0.3.0
+-   新增数据分类字段:type
+-   新增搜索回调
+-   修复分割线混乱的BUG(其实就是把多余的去掉了)
 
 ### 2020-7-18  v0.2.0
 -   优化修改API配置调用方法

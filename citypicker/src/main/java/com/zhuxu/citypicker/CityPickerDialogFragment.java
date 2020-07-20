@@ -195,35 +195,31 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
 
     private void initData() {
         Bundle args = getArguments();
-        Log.e("zhuxu", "1=================================");
         if (args != null) {
             enableAnim = args.getBoolean("cp_enable_anim");
             config = (CityPickerConfig) args.getSerializable(CITY_PICKER_DIALOG_CONFIG_FLAG);
         }
-        Log.e("zhuxu", "2=================================");
         //初始化热门城市
         if (mHotCities == null || mHotCities.isEmpty()) {
             // 是否使用自定义热门城市
             mHotCities = new ArrayList<>();
-            mHotCities.add(new HotCity("北京", "北京", "101010100"));
-            mHotCities.add(new HotCity("上海", "上海", "101020100"));
-            mHotCities.add(new HotCity("广州", "广东", "101280101"));
-            mHotCities.add(new HotCity("深圳", "广东", "101280601"));
-            mHotCities.add(new HotCity("天津", "天津", "101030100"));
-            mHotCities.add(new HotCity("杭州", "浙江", "101210101"));
-            mHotCities.add(new HotCity("南京", "江苏", "101190101"));
-            mHotCities.add(new HotCity("成都", "四川", "101270101"));
-            mHotCities.add(new HotCity("武汉", "湖北", "101200101"));
+            mHotCities.add(new HotCity("北京", "北京", "101010100").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("上海", "上海", "101020100").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("广州", "广东", "101280101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("深圳", "广东", "101280601").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("天津", "天津", "101030100").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("杭州", "浙江", "101210101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("南京", "江苏", "101190101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("成都", "四川", "101270101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("武汉", "湖北", "101200101").setType(CityPicker.FLAG_HOT));
         }
-        Log.e("zhuxu", "3=================================");
         //初始化定位城市，默认为空时会自动回调定位
         if (mLocatedCity == null) {
-            mLocatedCity = new LocatedCity(getString(R.string.cp_locating), "未知", "0");
+            mLocatedCity = new LocatedCity(getString(R.string.cp_locating), "未知", "0").setType(CityPicker.FLAG_LOCATION);
             locateState = LocateState.LOCATING;
         } else {
             locateState = LocateState.SUCCESS;
         }
-        Log.e("zhuxu", "4=================================");
 
         // 判断是否使用自定义列表数据
         if (!config.isUseCustomData()) {
@@ -232,7 +228,6 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         } else {
             mAllCities = mList_custom;
         }
-        Log.e("zhuxu", "5=================================");
 
         // 初始化拼音数据
         initPinyinData(mAllCities);
@@ -243,7 +238,6 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             hotCity.setHot();
             mAllCities.add(0, hotCity);
         }
-        Log.e("zhuxu", "6=================================");
 
         // 是否显示自定义模块
         if (config.isUseCustomModel()) {
@@ -251,13 +245,11 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
                     "未知", "0");
             mAllCities.add(0, hotCity);
         }
-        Log.e("zhuxu", "7=================================");
 
         // 是否显示定位
         if (config.isShowLocation()) {
             mAllCities.add(0, mLocatedCity);
         }
-        Log.e("zhuxu", "8=================================");
 
         mResults = mAllCities;
     }
@@ -338,17 +330,45 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             mAdapter.updateData(mResults);
         } else {
             mClearAllBtn.setVisibility(View.VISIBLE);
-            //开始数据库查找
-            mResults = dbManager.searchCity(keyword);
-            ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(mResults);
-            if (mResults == null || mResults.isEmpty()) {
-                mEmptyView.setVisibility(View.VISIBLE);
+            if (searchActionInterface != null) {
+                searchActionInterface.search(keyword);
             } else {
-                mEmptyView.setVisibility(View.GONE);
-                mAdapter.updateData(mResults);
+                //开始数据库查找
+                mResults = dbManager.searchCity(keyword);
+                ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(mResults);
+                if (mResults == null || mResults.isEmpty()) {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                } else {
+                    mEmptyView.setVisibility(View.GONE);
+                    mAdapter.updateData(mResults);
+                }
             }
         }
         mRecyclerView.scrollToPosition(0);
+    }
+
+    /**
+     * 更新数据
+     *
+     * @param _mResults
+     */
+    public void updateResult(List<City> _mResults) {
+        for (City city : _mResults) {
+            if (TextUtils.isEmpty(city.getPinyin())) {
+                // 自动获取首字母
+                city.setPinyin(Pinyin.toPinyin(city.getName().charAt(0)));
+            }
+        }
+        // 排序
+        ChineseSortUtil.sortList(_mResults);
+
+        ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(_mResults);
+        if (_mResults == null || _mResults.isEmpty()) {
+            mEmptyView.setVisibility(View.VISIBLE);
+        } else {
+            mEmptyView.setVisibility(View.GONE);
+            mAdapter.updateData(_mResults);
+        }
     }
 
     @Override
@@ -373,6 +393,18 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
 
     public void locationChanged(LocatedCity location, int state) {
         mAdapter.updateLocateState(location, state);
+    }
+
+    SearchActionInterface searchActionInterface;
+
+    /**
+     * 设置搜索回调
+     *
+     * @param _searchActionInterface
+     */
+    public void searchInterface(SearchActionInterface _searchActionInterface) {
+        searchActionInterface = _searchActionInterface;
+        Log.e("zhuxu", " set searchInterface is 2 " + (_searchActionInterface == null));
     }
 
     /**

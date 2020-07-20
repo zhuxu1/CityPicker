@@ -2,6 +2,8 @@ package com.zhuxu.citypicker.model;
 
 import android.text.TextUtils;
 
+import com.zhuxu.citypicker.CityPicker;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +15,7 @@ public class City {
     private String province;
     private String pinyin;
     private String code;
+    private String type = "";
     private boolean isHot = false;
     private boolean isLocation = false;
 
@@ -34,6 +37,7 @@ public class City {
 
     public void setHot() {
         isHot = true;
+        setType(CityPicker.FLAG_HOT);
     }
 
     /***
@@ -106,5 +110,14 @@ public class City {
 
     public void setLocation(boolean location) {
         isLocation = location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public City setType(String type) {
+        this.type = type;
+        return this;
     }
 }

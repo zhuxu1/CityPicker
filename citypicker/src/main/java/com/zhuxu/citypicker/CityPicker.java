@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.zhuxu.citypicker.adapter.OnPickListener;
 import com.zhuxu.citypicker.model.City;
@@ -23,6 +24,19 @@ import java.util.List;
  * @Date: 2018/2/6 17:52
  */
 public class CityPicker {
+    /**
+     * 热门城市
+     */
+    public static String FLAG_HOT = "FLAG_HOT";
+    /**
+     * 定位信息
+     */
+    public static String FLAG_LOCATION = "FLAG_LOCATION";
+    /**
+     * 列表
+     */
+    public static String FLAG_LIST = "FLAG_LIST";
+
     private static final String TAG = "CityPicker";
 
     private WeakReference<FragmentActivity> mContext;
@@ -79,8 +93,9 @@ public class CityPicker {
 
     /**
      * 设置是否使用自定义数据模块
-     * @param enable 是否开启自定义数据模块
-     * @param title  自定义数据模块的标题
+     *
+     * @param enable           是否开启自定义数据模块
+     * @param title            自定义数据模块的标题
      * @param mCustomModelData 自定义数据模块的列表数据
      * @return
      */
@@ -169,7 +184,8 @@ public class CityPicker {
 
     /**
      * 自定义数据
-     * @param enable 是否启用自定义数据，启用自定义数据将会代替现有数据库数据
+     *
+     * @param enable   是否启用自定义数据，启用自定义数据将会代替现有数据库数据
      * @param listdata 自定义数据
      * @return
      */
@@ -242,6 +258,7 @@ public class CityPicker {
         cityPickerFragment.setAnimationStyle(mAnimStyle);
         cityPickerFragment.setIconTxt(cityPickerConfig.getStrHotCitiesIcon());
         cityPickerFragment.setOnPickListener(mOnPickListener);
+        cityPickerFragment.searchInterface(searchActionInterface);
         if (cityPickerConfig.isUseCustomData()) {
             cityPickerFragment.setCustomData(custom_listdata);
         }
@@ -261,6 +278,27 @@ public class CityPicker {
         CityPickerDialogFragment fragment = (CityPickerDialogFragment) mFragmentManager.get().findFragmentByTag(TAG);
         if (fragment != null) {
             fragment.locationChanged(location, state);
+        }
+    }
+
+    SearchActionInterface searchActionInterface;
+
+    /**
+     * 设置搜索回调
+     */
+    public CityPicker searchInterface(SearchActionInterface _searchActionInterface) {
+        Log.e("zhuxu", " set searchInterface is 1 " + (_searchActionInterface == null));
+        searchActionInterface = _searchActionInterface;
+        return this;
+    }
+
+    /**
+     * 更新数据
+     */
+    public void updateResult(List<City> _mResults) {
+        CityPickerDialogFragment fragment = (CityPickerDialogFragment) mFragmentManager.get().findFragmentByTag(TAG);
+        if (fragment != null) {
+            fragment.updateResult(_mResults);
         }
     }
 }

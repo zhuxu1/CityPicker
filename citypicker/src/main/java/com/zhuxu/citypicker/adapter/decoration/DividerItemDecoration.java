@@ -36,10 +36,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         TypedValue typedValue_deep = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.cpSectionSpacingDeepBackground, typedValue_deep, true);
         mPaint_big.setColor(context.getResources().getColor(typedValue_deep.resourceId));
-//        context.getTheme().resolveAttribute(R.attr.cpSectionBackground, typedValue, true);
-//        mBgColor = context.getResources().getColor(typedValue.resourceId);
-//        mPaint_big.setColor(mBgColor);
-
 
         dividerHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0.5f, context.getResources().getDisplayMetrics());
         dividerHeight_big = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2f, context.getResources().getDisplayMetrics());
@@ -60,32 +56,10 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount - 1; i++) {
             String section = mData.get(i).getSection();
             View view = parent.getChildAt(i);
-            if (TextUtils.isEmpty((CharSequence) view.getTag())) {
-                view.setTag(section);
-            }
 
-            if (view.getTag().equals("定位城市")) {
-
-            } else if (view.getTag().equals("热门城市")) {
-                float top = view.getBottom();
-                float bottom = view.getBottom() + dividerHeight_big;
-                c.drawRect(left, top, right + 120, bottom, mPaint_big);
-            } else {
-                float top = view.getBottom();
-                float bottom = view.getBottom() + dividerHeight;
-                c.drawRect(left + 40, top, right, bottom, mPaint);
-            }
-//            Log.e("zhuxu", "section is : " + i + ":" + section);
-//            if (section.equals("定位城市")) {
-//            } else if (section.equals("热门城市")) {
-////                float top = view.getBottom();
-////                float bottom = view.getBottom() + dividerHeight_big;
-////                c.drawRect(left + 40, top, right, bottom, mPaint_big);
-//            } else {
-//                float top = view.getBottom();
-//                float bottom = view.getBottom() + dividerHeight;
-//                c.drawRect(left, top, right, bottom, mPaint);
-//            }
+            float top = view.getBottom();
+            float bottom = view.getBottom() + dividerHeight;
+            c.drawRect(left + 40, top, right, bottom, mPaint);
         }
     }
 }

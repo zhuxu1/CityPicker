@@ -6,4 +6,10 @@ public class HotCity extends City {
         super(name, province, name, code, true, false);
 //        super(name, province, "热门城市", code);
     }
+
+    @Override
+    public HotCity setType(String type) {
+        super.setType(type);
+        return this;
+    }
 }
