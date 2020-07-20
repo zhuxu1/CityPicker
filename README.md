@@ -50,6 +50,8 @@ City selection / lists that require initial grouping
 -   新增自动根据名称识别首字母，自定义数据一键排序
 -   新增自定义搜索
 
+#### 记得给使用CityPicker的activity添加主题"DefaultCityPickerTheme"或自定义theme
+
 #### 新增主要内容使用方法:  
 ```
     CityPicker.from(MainActivity.this)
