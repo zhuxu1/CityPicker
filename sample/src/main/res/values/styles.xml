@@ -16,6 +16,8 @@
         <item name="cpSectionHeight">@dimen/custom_section_height</item>
         <item name="cpOverlayBackground">@color/color_green</item>
         <item name="cpListItemHotBackGround">@drawable/shape_back_hot</item>
+        <item name="cpSectionHotBackground">@drawable/shape_hot_child</item>
+        <item name="cpSectionCustomModelBackground">@drawable/shape_hot_child</item>
     </style>
 
     <style name="CustomAnim">

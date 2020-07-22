@@ -14,6 +14,7 @@ import com.zhuxu.citypicker.model.CityPickerConfig;
 import com.zhuxu.citypicker.model.HotCity;
 import com.zhuxu.citypicker.model.LocateState;
 import com.zhuxu.citypicker.model.LocatedCity;
+import com.zhuxu.citypicker.view.SideIndexBar;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -96,16 +97,18 @@ public class CityPicker {
      *
      * @param enable           是否开启自定义数据模块
      * @param title            自定义数据模块的标题
+     * @param titleLittle      右侧导航栏的显示(最多二字)
      * @param mCustomModelData 自定义数据模块的列表数据
      * @return
      */
-    public CityPicker setCustomModel(boolean enable, String title, List<HotCity> mCustomModelData) {
+    public CityPicker setCustomModel(boolean enable, String title, String titleLittle, List<HotCity> mCustomModelData) {
         cityPickerConfig.setUseCustomModel(enable);
         if (!enable) {
             return this;
         }
         this.mCustomModelData = mCustomModelData;
         cityPickerConfig.setStrCustomModelTitle(TextUtils.isEmpty(title) ? "自定义模块" : title);
+        cityPickerConfig.setStrLittleCustomModel(TextUtils.isEmpty(title) ? "自定" : titleLittle);
         return this;
     }
 

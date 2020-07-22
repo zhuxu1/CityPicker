@@ -69,5 +69,10 @@
         <item name="cpOverlayTextSize">@dimen/cp_overlay_text_size</item>
         <item name="cpOverlayTextColor">@android:color/white</item>
         <item name="cpOverlayBackground">@drawable/cp_overlay_bg</item>
+
+        <!--  热门城市背景  -->
+        <item name="cpSectionHotBackground">@drawable/shape_hot_child</item>
+        <!--  自定义模块背景  -->
+        <item name="cpSectionCustomModelBackground">@drawable/shape_hot_child</item>
     </style>
 </resources>

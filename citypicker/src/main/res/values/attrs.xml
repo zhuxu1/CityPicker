@@ -47,4 +47,10 @@
     <attr name="cpOverlayTextSize" format="dimension|reference" />
     <attr name="cpOverlayTextColor" format="color|reference" />
     <attr name="cpOverlayBackground" format="color|reference" />
+
+    <!--  热门城市背景  -->
+    <attr name="cpSectionHotBackground" format="reference" />
+    <!--  自定义模块背景  -->
+    <attr name="cpSectionCustomModelBackground" format="reference" />
+
 </resources>

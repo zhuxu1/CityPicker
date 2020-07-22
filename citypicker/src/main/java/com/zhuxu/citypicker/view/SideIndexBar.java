@@ -62,6 +62,15 @@ public class SideIndexBar extends View {
         init(context);
     }
 
+    String titleLittleCustom = "";
+    public void setCutomLittleTitle(String title) {
+        titleLittleCustom = title;
+        if (mIndexItems != null && mIndexItems.size() > 0){
+            DEFAULT_INDEX_ITEMS[1] = titleLittleCustom;
+            init(getContext());
+        }
+    }
+
     private void init(Context context) {
         mIndexItems = new ArrayList<>();
         mIndexItems.addAll(Arrays.asList(DEFAULT_INDEX_ITEMS));

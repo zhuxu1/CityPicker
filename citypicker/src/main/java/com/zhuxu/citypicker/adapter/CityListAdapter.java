@@ -23,6 +23,7 @@ import com.zhuxu.citypicker.model.CityPickerConfig;
 import com.zhuxu.citypicker.model.HotCity;
 import com.zhuxu.citypicker.model.LocateState;
 import com.zhuxu.citypicker.model.LocatedCity;
+import com.zhuxu.citypicker.view.AutoLinefeedLayout;
 
 import java.util.List;
 
@@ -135,10 +136,12 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
                 view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_location_layout, parent, false);
                 return new LocationViewHolder(view);
             case VIEW_TYPE_HOT:
-                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
+//                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
+                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout2, parent, false);
                 return new HotViewHolder(view);
             case VIEW_TYPE_CUSTOM:
-                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
+//                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout, parent, false);
+                view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_hot_layout2, parent, false);
                 return new CustomViewHolder(view);
             default:
                 view = LayoutInflater.from(mContext).inflate(R.layout.cp_list_item_default_layout, parent, false);
@@ -228,20 +231,64 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             final int pos = holder.getAdapterPosition();
             final City data = mData.get(pos);
             if (data == null) return;
-            GridListAdapter mAdapter = new GridListAdapter(mContext, mHotData);
-            mAdapter.setInnerListener(mInnerListener);
-            mAdapter.setIconTxt(iconTxt);
-            ((HotViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
+//            GridListAdapter mAdapter = new GridListAdapter(mContext, mHotData);
+//            mAdapter.setInnerListener(mInnerListener);
+//            mAdapter.setIconTxt(iconTxt);
+//            ((HotViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
+            AutoLinefeedLayout autoLinefeedLayout = ((HotViewHolder) holder).autoLinefeedLayout;
+            if (autoLinefeedLayout != null && autoLinefeedLayout.getChildCount() > 0){
+                autoLinefeedLayout.removeAllViews();
+            }
+            for (HotCity hotCity : mHotData) {
+                autoLinefeedLayout.addView(getHotChildView(hotCity));
+            }
         }
         //自定义模块
         if (holder instanceof CustomViewHolder) {
             final int pos = holder.getAdapterPosition();
             final City data = mData.get(pos);
             if (data == null) return;
-            GridListAdapter mAdapter = new GridListAdapter(mContext, mCustomModelData);
-            mAdapter.setInnerListener(mInnerListener);
-            ((CustomViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
+//            GridListAdapter mAdapter = new GridListAdapter(mContext, mCustomModelData);
+//            mAdapter.setInnerListener(mInnerListener);
+//            ((CustomViewHolder) holder).mRecyclerView.setAdapter(mAdapter);
+            AutoLinefeedLayout autoLinefeedLayout = ((CustomViewHolder) holder).autoLinefeedLayout;
+            if (autoLinefeedLayout != null && autoLinefeedLayout.getChildCount() > 0){
+                autoLinefeedLayout.removeAllViews();
+            }
+            for (HotCity hotCity : mHotData) {
+                autoLinefeedLayout.addView(getCustomChildView(hotCity));
+            }
         }
+    }
+
+    private View getHotChildView(final City city) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_hot_child, null);
+        TextView childTv = view.findViewById(R.id.item_hot_child_tv);
+        childTv.setText(city.getName());
+        childTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mInnerListener != null) {
+                    mInnerListener.dismiss(0, city);
+                }
+            }
+        });
+        return view;
+    }
+
+    private View getCustomChildView(final City city) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_cutom_child, null);
+        TextView childTv = view.findViewById(R.id.item_hot_child_tv);
+        childTv.setText(city.getName());
+        childTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mInnerListener != null) {
+                    mInnerListener.dismiss(0, city);
+                }
+            }
+        });
+        return view;
     }
 
     @Override
@@ -282,35 +329,54 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         }
     }
 
+//    public static class CustomViewHolder extends BaseViewHolder {
+//        RecyclerView mRecyclerView;
+//
+//        CustomViewHolder(View itemView) {
+//            super(itemView);
+//            mRecyclerView = itemView.findViewById(R.id.cp_hot_list);
+//            mRecyclerView.setHasFixedSize(true);
+//            mRecyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(),
+//                    GridListAdapter.SPAN_COUNT, LinearLayoutManager.VERTICAL, false));
+//            int space = itemView.getContext().getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
+//            mRecyclerView.addItemDecoration(new GridItemDecoration(GridListAdapter.SPAN_COUNT,
+//                    space));
+//        }
+//    }
+
     public static class CustomViewHolder extends BaseViewHolder {
-        RecyclerView mRecyclerView;
+        AutoLinefeedLayout autoLinefeedLayout;
 
         CustomViewHolder(View itemView) {
             super(itemView);
-            mRecyclerView = itemView.findViewById(R.id.cp_hot_list);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(),
-                    GridListAdapter.SPAN_COUNT, LinearLayoutManager.VERTICAL, false));
-            int space = itemView.getContext().getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
-            mRecyclerView.addItemDecoration(new GridItemDecoration(GridListAdapter.SPAN_COUNT,
-                    space));
+            autoLinefeedLayout = itemView.findViewById(R.id.cp_hot_list_autoline);
         }
     }
 
+//    public static class HotViewHolder extends BaseViewHolder {
+//        RecyclerView mRecyclerView;
+//
+//        HotViewHolder(View itemView) {
+//            super(itemView);
+//            mRecyclerView = itemView.findViewById(R.id.cp_hot_list);
+//            mRecyclerView.setHasFixedSize(true);
+//            mRecyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(),
+//                    GridListAdapter.SPAN_COUNT, LinearLayoutManager.VERTICAL, false));
+//            int space = itemView.getContext().getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
+//            mRecyclerView.addItemDecoration(new GridItemDecoration(GridListAdapter.SPAN_COUNT,
+//                    space));
+//        }
+//    }
+
     public static class HotViewHolder extends BaseViewHolder {
-        RecyclerView mRecyclerView;
+        AutoLinefeedLayout autoLinefeedLayout;
 
         HotViewHolder(View itemView) {
             super(itemView);
-            mRecyclerView = itemView.findViewById(R.id.cp_hot_list);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(),
-                    GridListAdapter.SPAN_COUNT, LinearLayoutManager.VERTICAL, false));
-            int space = itemView.getContext().getResources().getDimensionPixelSize(R.dimen.cp_grid_item_space);
-            mRecyclerView.addItemDecoration(new GridItemDecoration(GridListAdapter.SPAN_COUNT,
-                    space));
+            autoLinefeedLayout = itemView.findViewById(R.id.cp_hot_list_autoline);
         }
     }
+
 
     public static class LocationViewHolder extends BaseViewHolder {
         LinearLayout container;

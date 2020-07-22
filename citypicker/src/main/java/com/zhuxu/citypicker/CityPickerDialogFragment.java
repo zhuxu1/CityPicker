@@ -178,6 +178,7 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
         mOverlayTextView = mContentView.findViewById(R.id.cp_overlay);
 
         mIndexBar = mContentView.findViewById(R.id.cp_side_index_bar);
+        mIndexBar.setCutomLittleTitle(config.getStrLittleCustomModel());
         mIndexBar.setNavigationBarHeight(ScreenUtil.getNavigationBarHeight(getActivity()));
         mIndexBar.setOverlayTextView(mOverlayTextView)
                 .setOnIndexChangedListener(this);
@@ -204,14 +205,14 @@ public class CityPickerDialogFragment extends DialogFragment implements TextWatc
             // 是否使用自定义热门城市
             mHotCities = new ArrayList<>();
             mHotCities.add(new HotCity("北京", "北京", "101010100").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("上海", "上海", "101020100").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("广州", "广东", "101280101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("上海上海", "上海", "101020100").setType(CityPicker.FLAG_HOT));
             mHotCities.add(new HotCity("深圳", "广东", "101280601").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("天津", "天津", "101030100").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("杭州", "浙江", "101210101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("广州广州广州", "广东", "101280101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("杭州杭州杭州", "浙江", "101210101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("天津天津", "天津", "101030100").setType(CityPicker.FLAG_HOT));
             mHotCities.add(new HotCity("南京", "江苏", "101190101").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("成都", "四川", "101270101").setType(CityPicker.FLAG_HOT));
-            mHotCities.add(new HotCity("武汉", "湖北", "101200101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("武汉武汉武汉", "湖北", "101200101").setType(CityPicker.FLAG_HOT));
+            mHotCities.add(new HotCity("成都成都", "四川", "101270101").setType(CityPicker.FLAG_HOT));
         }
         //初始化定位城市，默认为空时会自动回调定位
         if (mLocatedCity == null) {

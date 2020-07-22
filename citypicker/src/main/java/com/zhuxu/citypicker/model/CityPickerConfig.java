@@ -22,14 +22,15 @@ public class CityPickerConfig implements Serializable {
     private boolean useCustomModel = false;
     // 自定义模块 标题
     private String strCustomModel = "";
+    // 自定义模块 侧标题
+    private String strLittleCustomModel = "";
 
     /**
-     *
-     * @param showLocation 是否显示 定位城市栏
-     * @param showHotCities 是否显示 热门城市栏
-     * @param strHotCities 热门城市 标题
+     * @param showLocation     是否显示 定位城市栏
+     * @param showHotCities    是否显示 热门城市栏
+     * @param strHotCities     热门城市 标题
      * @param strHotCitiesIcon 热门城市 小标内容
-     * @param useCustomData 是否自定义数据
+     * @param useCustomData    是否自定义数据
      */
     public CityPickerConfig(boolean showLocation, boolean showHotCities, String strHotCities, String strHotCitiesIcon, boolean useCustomData) {
         this.showLocation = showLocation;
@@ -101,5 +102,25 @@ public class CityPickerConfig implements Serializable {
 
     public boolean hasSetStrCustomModel() {
         return !TextUtils.isEmpty(strCustomModel);
+    }
+
+    public String getStrCustomModel() {
+        return strCustomModel;
+    }
+
+    public void setStrCustomModel(String strCustomModel) {
+        this.strCustomModel = strCustomModel;
+    }
+
+    public String getStrLittleCustomModel() {
+        if (TextUtils.isEmpty(strLittleCustomModel) || strLittleCustomModel.length() <= 2) {
+            return strLittleCustomModel;
+        } else {
+            return strLittleCustomModel.substring(0, 2);
+        }
+    }
+
+    public void setStrLittleCustomModel(String strLittleCustomModel) {
+        this.strLittleCustomModel = strLittleCustomModel;
     }
 }

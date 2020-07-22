@@ -15,18 +15,18 @@ City selection / lists that require initial grouping
 #### How to use 使用方法：
 如果有其它改进意见或想法可在issue中描述  
 ```
-    implementation 'com.utils.cocoz:citypicker:0.3.0'
+    implementation 'com.utils.cocoz:citypicker:0.3.2'
 ```  
 ```
    <dependency>
    	<groupId>com.utils.cocoz</groupId>
    	<artifactId>citypicker</artifactId>
-   	<version>0.3.0</version>
+   	<version>0.3.2</version>
    	<type>pom</type>
    </dependency>
 ```  
 ```
-   <dependency org="com.utils.cocoz" name="citypicker" rev="0.3.0">
+   <dependency org="com.utils.cocoz" name="citypicker" rev="0.3.2">
    	<artifact name="citypicker" ext="pom"></artifact>
    </dependency>
 ```  
@@ -65,8 +65,8 @@ City selection / lists that require initial grouping
                             .setCustomData(showCustomList, getListData())
                             // 设置热门城市部分的显示
                             .setHotModel(strHotCityTitle, strHotCityTitleIcon)
-                            // 设置自定义模块显示
-                            .setCustomModel(showCustomModel, strCustomModelTitle, getCustomListData())
+                           // 设置自定义模块显示
+                            .setCustomModel(showCustomModel, strCustomModelTitle, "子弟", getCustomListData())
                             .setOnPickListener(new OnPickListener() {
                                 @Override
                                 public void onPick(int position, City data) {
@@ -129,8 +129,13 @@ A: 你可以隐藏定位、热门城市、自定义模块，并手动添加head�
 欢迎在issue中提交你的需求
 #### Q:搜索回调中可以自动排序吗?
 A: 可以，支持自动识别首字母拼音，自动排序.(需要设“pinyin”字段为空)
+#### Q:如何修改热门城市与自定义模块的item背景样式?
+A: 使用自定义style,使用cpSectionHotBackground(热门城市)与cpSectionCustomModelBackground(自定义模块)完成自定义
   
 更多详细(如“如何修改颜色样式”)用法请[请查看原文链接](https://github.com/zaaach/CityPicker)
+
+### 2020-7-22  V0.3.1
+-   修改热门城市与自定义模块样式为自动换行布局
 
 ### 2020-7-20  V0.3.0
 -   新增数据分类字段:type
@@ -151,9 +156,7 @@ A: 可以，支持自动识别首字母拼音，自动排序.(需要设“pinyin
 -   开放了一些新的接口
 
 ### 什么样子的
-<img src="art/city_picker.jpg">
-
-[点击下载demo](https://fir.im/pyec)
+<img src="art/sample_screenshot.jpg">
 
 样例代码中已经有详细的代码和备注，[点击查看样例代码](https://github.com/zhuxu1/CityPickerFixed/blob/master/sample/src/main/java/com/zaaach/citypickerdemo/MainActivity.java)
 
