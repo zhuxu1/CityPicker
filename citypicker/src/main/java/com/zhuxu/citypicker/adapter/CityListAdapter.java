@@ -255,7 +255,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
             if (autoLinefeedLayout != null && autoLinefeedLayout.getChildCount() > 0){
                 autoLinefeedLayout.removeAllViews();
             }
-            for (HotCity hotCity : mHotData) {
+            for (HotCity hotCity : mCustomModelData) {
                 autoLinefeedLayout.addView(getCustomChildView(hotCity));
             }
         }

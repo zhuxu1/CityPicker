@@ -15,18 +15,18 @@ City selection / lists that require initial grouping
 #### How to use 使用方法：
 如果有其它改进意见或想法可在issue中描述  
 ```
-    implementation 'com.utils.cocoz:citypicker:0.3.2'
+    implementation 'com.utils.cocoz:citypicker:0.3.3'
 ```  
 ```
    <dependency>
    	<groupId>com.utils.cocoz</groupId>
    	<artifactId>citypicker</artifactId>
-   	<version>0.3.2</version>
+   	<version>0.3.3</version>
    	<type>pom</type>
    </dependency>
 ```  
 ```
-   <dependency org="com.utils.cocoz" name="citypicker" rev="0.3.2">
+   <dependency org="com.utils.cocoz" name="citypicker" rev="0.3.3">
    	<artifact name="citypicker" ext="pom"></artifact>
    </dependency>
 ```  
@@ -132,10 +132,14 @@ A: 可以，支持自动识别首字母拼音，自动排序.(需要设“pinyin
 #### Q:如何修改热门城市与自定义模块的item背景样式?
 A: 使用自定义style,使用cpSectionHotBackground(热门城市)与cpSectionCustomModelBackground(自定义模块)完成自定义
   
+  
+  
 更多详细(如“如何修改颜色样式”)用法请[请查看原文链接](https://github.com/zaaach/CityPicker)
 
-### 2020-7-22  V0.3.1
+
+### 2020-7-22  V0.3.3
 -   修改热门城市与自定义模块样式为自动换行布局
+-   新增热门城市与自定义模块的背景样式接口
 
 ### 2020-7-20  V0.3.0
 -   新增数据分类字段:type
