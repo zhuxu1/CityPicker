@@ -5,7 +5,7 @@
 # CityPicker
 
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
-[ ![Download](https://api.bintray.com/packages/zhuxu820/Utils/CityPickerFixed/images/download.svg?version=0.3.3) ](https://bintray.com/zhuxu820/Utils/CityPickerFixed/0.3.3/link)
+[ ![Download](https://api.bintray.com/packages/zhuxu820/Utils/CityPickerFixed/images/download.svg?version=0.3.5) ](https://bintray.com/zhuxu820/Utils/CityPickerFixed/0.3.5/link)
 
 #### 这个框架干嘛的？ What's this?
  
