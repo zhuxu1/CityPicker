@@ -7,6 +7,11 @@
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-yellow.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [ ![Download](https://api.bintray.com/packages/zhuxu820/Utils/CityPickerFixed/images/download.svg?version=0.3.5) ](https://bintray.com/zhuxu820/Utils/CityPickerFixed/0.3.5/link)
 
+#### 本库已不再维护更新，请使用 [CityPickerX](https://github.com/zhuxu1/CityPickerX)
+#### 本库已不再维护更新，请使用 [CityPickerX](https://github.com/zhuxu1/CityPickerX)
+#### 本库已不再维护更新，请使用 [CityPickerX](https://github.com/zhuxu1/CityPickerX)
+
+
 #### 这个框架干嘛的？ What's this?
  
 城市选择框架 / 需要首字母分组的列表
